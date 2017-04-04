@@ -15,9 +15,3 @@ void AppController::createArrayAction()
 {
 	controller = std::make_unique<ArrayController>();
 }
-
-void AppController::printView()
-{
-	appMenu view;
-	view.print();
-}

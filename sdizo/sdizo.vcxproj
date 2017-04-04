@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppController.h" />
+    <ClInclude Include="Array.h" />
     <ClInclude Include="GenericController.h" />
     <ClInclude Include="GenericStructure.h" />
     <ClInclude Include="GenericView.h" />
@@ -150,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppController.cpp" />
+    <ClCompile Include="Array.cpp" />
+    <ClCompile Include="GenericController.cpp" />
     <ClCompile Include="sdizo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

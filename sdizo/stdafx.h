@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <exception>
 
 
 // TODO: reference additional headers your program requires here

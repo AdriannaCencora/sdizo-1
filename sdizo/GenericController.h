@@ -8,7 +8,7 @@ class GenericController
 public:
 	virtual ~GenericController() {};
 	virtual void parseInput(std::string input) = 0;
-	virtual void printView() = 0;
+	virtual void printView();
 
 protected:
 	std::unique_ptr<GenericStructure> structure;
