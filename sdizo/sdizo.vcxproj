@@ -141,6 +141,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppController.h" />
     <ClInclude Include="GenericController.h" />
     <ClInclude Include="GenericStructure.h" />
     <ClInclude Include="GenericView.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppController.cpp" />
     <ClCompile Include="sdizo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

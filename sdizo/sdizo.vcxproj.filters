@@ -66,12 +66,18 @@
     <ClInclude Include="GenericView.h">
       <Filter>Source Files\views\GenericView</Filter>
     </ClInclude>
+    <ClInclude Include="AppController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sdizo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AppController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
