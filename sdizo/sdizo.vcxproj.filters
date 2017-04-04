@@ -73,7 +73,7 @@
       <Filter>Source Files\structures\array</Filter>
     </ClInclude>
     <ClInclude Include="ArrayController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\controllers\ArrayController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +93,7 @@
       <Filter>Source Files\structures\array</Filter>
     </ClCompile>
     <ClCompile Include="ArrayController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\controllers\ArrayController</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
