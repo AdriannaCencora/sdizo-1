@@ -63,6 +63,9 @@
     <ClInclude Include="GenericStructure.h">
       <Filter>Source Files\structures\GenericStructure</Filter>
     </ClInclude>
+    <ClInclude Include="GenericView.h">
+      <Filter>Source Files\views\GenericView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
