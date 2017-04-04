@@ -5,7 +5,7 @@ using namespace std;
 
 void ArrayMenu::print()
 {
-	cout << endl;
+	cout << "--------Tablica----------" << endl;
 	cout << "1.Wczytaj z pliku" << endl;
 	cout << "2.Usun" << endl;
 	cout << "3.Dodaj" << endl;

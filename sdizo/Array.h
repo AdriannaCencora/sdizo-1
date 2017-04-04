@@ -23,6 +23,8 @@ public:
 	int getRealocationStep();
 	int getSize();
 
+	bool isEmpty();
+
 private:
 	std::unique_ptr<int[]> data;
 	int currSize = 0;

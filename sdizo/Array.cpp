@@ -17,15 +17,23 @@ Array::Array(int size) :
 
 void Array::printData()
 {
-	for (int index = 0; index < this->currSize; index++)
-		std::cout << data[index] << " ";
-
+	if (!isEmpty())
+		for (int index = 0; index < this->currSize; index++) 
+		{
+			std::cout << data[index];
+			if (index % 15 == 0 && index != 0)
+				std::cout << std::endl;
+			else 
+				std::cout << ' ';
+		}
+	else
+		std::cout << "Tablica jest pusta!";
 	std::cout << std::endl;
 }
 
 void Array::addElement(int value)
 {
-	if (currSize + 1 >= allocatedSize)
+	if (currSize + 1 > allocatedSize)
 		realocateByStep();
 	data[currSize++] = value;
 }
@@ -103,6 +111,11 @@ void Array::realocateByStep()
 int Array::getSize()
 {
 	return allocatedSize;
+}
+
+bool Array::isEmpty()
+{
+	return (currSize == 0);
 }
 
 void Array::moveElementsRight(int index)
