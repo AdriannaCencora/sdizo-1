@@ -20,9 +20,12 @@ std::unique_ptr<GenericView>  Array::getMenu()
 {
 	return std::make_unique<ArrayMenu>();
 }
-std::unique_ptr<GenericView> Array::printStructureData()
+void Array::printStructureData()
 {
-	return std::make_unique<ArrayView>();
+	for (int index = 0; index < this->currSize; index++)
+		std::cout << data[index] << " ";
+
+	std::cout << std::endl;
 }
 
 void Array::addElement(int value)

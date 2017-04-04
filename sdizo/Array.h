@@ -9,7 +9,7 @@ public:
 	virtual ~Array() {};
 
 	virtual std::unique_ptr<GenericView> getMenu();
-	virtual std::unique_ptr<GenericView> printStructureData();
+	virtual void printStructureData();
 
 	virtual void addElement(int value);
 	virtual void addElement(int index, int value);
