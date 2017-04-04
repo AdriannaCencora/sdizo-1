@@ -144,6 +144,7 @@
     <ClInclude Include="AppController.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="ArrayController.h" />
+    <ClInclude Include="ArrayMenu.h" />
     <ClInclude Include="GenericController.h" />
     <ClInclude Include="GenericStructure.h" />
     <ClInclude Include="GenericView.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="AppController.cpp" />
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="ArrayController.cpp" />
+    <ClCompile Include="ArrayMenu.cpp" />
     <ClCompile Include="GenericController.cpp" />
     <ClCompile Include="sdizo.cpp" />
     <ClCompile Include="stdafx.cpp">

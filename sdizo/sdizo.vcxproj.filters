@@ -75,6 +75,9 @@
     <ClInclude Include="ArrayController.h">
       <Filter>Source Files\controllers\ArrayController</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayMenu.h">
+      <Filter>Source Files\views\array</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="ArrayController.cpp">
       <Filter>Source Files\controllers\ArrayController</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrayMenu.cpp">
+      <Filter>Source Files\views\array</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
