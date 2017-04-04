@@ -67,7 +67,7 @@
       <Filter>Source Files\views\GenericView</Filter>
     </ClInclude>
     <ClInclude Include="AppController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\controllers\AppController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +78,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AppController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\controllers\AppController</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
