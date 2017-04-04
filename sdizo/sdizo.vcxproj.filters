@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\controllers">
+      <UniqueIdentifier>{9a329815-d36b-4ff4-916e-a9f0e2df90b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers\GenericController">
+      <UniqueIdentifier>{f9f892a6-5191-4acb-b7bd-c451f518cb65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers\AppController">
+      <UniqueIdentifier>{08f519de-a7e8-4e54-9492-9389c0c3d4f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers\ArrayController">
+      <UniqueIdentifier>{90df7210-1d94-4a37-adf8-4d34ccaa6057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views">
+      <UniqueIdentifier>{2c05c674-e673-48e1-a6c6-b70de083aa99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\GenericView">
+      <UniqueIdentifier>{0379ac62-6b98-47ce-a177-9cd0bffa3632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\array">
+      <UniqueIdentifier>{5105e518-3d9b-4554-aa81-9fef2aa830c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\app">
+      <UniqueIdentifier>{d89399c8-fbd1-4a75-9e5b-2d19df3b9224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures">
+      <UniqueIdentifier>{b7568e4e-3872-4507-a6c4-b3a5b579f145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures\GenericStructure">
+      <UniqueIdentifier>{ab9ff07a-7530-41aa-b6d0-b99054ab9474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures\array">
+      <UniqueIdentifier>{c2b3aa28-2d8b-48c5-8ef3-1dbcf9b07e58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GenericController.h">
+      <Filter>Source Files\controllers\GenericController</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdizo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
