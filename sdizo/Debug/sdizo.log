@@ -1,11 +1,3 @@
-﻿  stdafx.cpp
-  sdizo.cpp
-  appMenu.cpp
-  GenericController.cpp
-  ArrayMenu.cpp
-  ArrayController.cpp
-  Array.cpp
-  AppController.cpp
-  Generating Code...
+﻿  GenericController.cpp
   sdizo.vcxproj -> C:\Users\krzem\Documents\Repa\sdizo\sdizo\Debug\sdizo.exe
   sdizo.vcxproj -> C:\Users\krzem\Documents\Repa\sdizo\sdizo\Debug\sdizo.pdb (Full PDB)

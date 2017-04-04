@@ -6,10 +6,10 @@
 
 using namespace std;
 
-AppController::AppController() :
-	running(false)
+AppController::AppController() : GenericController()
 {
 	setlocale(LC_ALL, "Polish");
+	
 }
 
 void AppController::parseInput(const std::string &input)
@@ -20,51 +20,24 @@ void AppController::parseInput(const std::string &input)
 	switch (parsedInput) 
 	{
 		case 0:
-			running = false;
+			this->Stop();
 			break;
 		case 1:
 			controller = std::make_unique<ArrayController>();
+			controller->Run();
 			break;
 		default:
 			throw new std::invalid_argument("Unknown controller input");
-		break;
+			break;
 	}
 }
 
 void AppController::printView()
 {
-	appMenu view;
-	view.print();
+	menu->print();
 }
 
-void AppController::run()
-{
-	running = true;
-	string userInput;
-	do {
-		system("cls");
-		this->printView();
-		cout << "Podaj opcjê: " << endl;
-		cin >> userInput;
-
-		try 
-		{
-			this->parseInput(userInput);
-		}
-		catch (invalid_argument&) 
-		{
-			cout << "Nieprawid³owy argument" << endl;
-			system("pause");
-		}
-	} while (this->isRunning());
-}
-
-bool AppController::isRunning()
-{
-	return running;
-}
-
-void AppController::initialize()
+void AppController::init()
 {
 	menu = std::make_unique<appMenu>();
 }

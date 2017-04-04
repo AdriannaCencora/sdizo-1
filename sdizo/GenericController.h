@@ -10,11 +10,18 @@ public:
 	virtual ~GenericController() {};
 	virtual void parseInput(const std::string &input) = 0;
 	virtual void printView();
+	bool isRunning();
+	void Run();
+	void Stop();
 
 protected:
 	std::unique_ptr<GenericStructure> structure;
 	std::unique_ptr<GenericView> menu;
 
-	virtual void initialize() {};
+	virtual void init();
+
+private:
+	bool running;
+
 };
 

@@ -8,12 +8,9 @@ class AppController :
 		virtual ~AppController() {};
 		virtual void parseInput(const std::string &input);
 		virtual void printView();
-		virtual void run();
-		virtual bool isRunning();
 
-		virtual void initialize();	
+		virtual void init();	
 	private:
 		std::unique_ptr<GenericController> controller;
-		bool running;
 };
 

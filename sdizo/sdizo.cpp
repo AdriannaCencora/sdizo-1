@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
 	AppController app;
-	app.run();
+	app.Run();
     return 0;
 }
 
