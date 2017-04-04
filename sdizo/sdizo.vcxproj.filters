@@ -72,6 +72,9 @@
     <ClInclude Include="Array.h">
       <Filter>Source Files\structures\array</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Array.cpp">
       <Filter>Source Files\structures\array</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrayController.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
