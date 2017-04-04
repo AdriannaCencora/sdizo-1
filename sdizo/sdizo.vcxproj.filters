@@ -70,7 +70,7 @@
       <Filter>Source Files\controllers\AppController</Filter>
     </ClInclude>
     <ClInclude Include="Array.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\structures\array</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +83,11 @@
     <ClCompile Include="AppController.cpp">
       <Filter>Source Files\controllers\AppController</Filter>
     </ClCompile>
-    <ClCompile Include="Array.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GenericController.cpp">
       <Filter>Source Files\controllers\GenericController</Filter>
+    </ClCompile>
+    <ClCompile Include="Array.cpp">
+      <Filter>Source Files\structures\array</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
