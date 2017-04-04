@@ -8,14 +8,14 @@ public:
 	Array(int size);
 	virtual ~Array() {};
 
-	virtual std::unique_ptr<GenericView> getMenu();
-	virtual void printStructureData();
+	virtual void printData();
 
 	virtual void addElement(int value);
 	virtual void addElement(int index, int value);
 	virtual void removeElement(int index);
 	virtual void clearStructure();
 	virtual void realocate(int newSize);
+	virtual bool findValue(int toFind);
 
 	void setValue(int index, int value);
 	int getValue(int index);

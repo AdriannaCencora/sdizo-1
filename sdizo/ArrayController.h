@@ -6,6 +6,7 @@ class ArrayController :
 public:
 	ArrayController();
 	virtual ~ArrayController() {};
-	virtual void parseInput(std::string input);
+	virtual void parseInput(const std::string &input);
+	virtual void initialize();
 };
 

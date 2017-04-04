@@ -2,7 +2,6 @@
 #include "Array.h"
 
 #include "ArrayMenu.h"
-#include "ArrayView.h"
 
 Array::Array() :
 	data(std::make_unique<int[]>(1))
@@ -16,11 +15,7 @@ Array::Array(int size) :
 	allocatedSize = size;
 }
 
-std::unique_ptr<GenericView>  Array::getMenu()
-{
-	return std::make_unique<ArrayMenu>();
-}
-void Array::printStructureData()
+void Array::printData()
 {
 	for (int index = 0; index < this->currSize; index++)
 		std::cout << data[index] << " ";
@@ -86,6 +81,14 @@ void Array::realocate(int newSize)
 		newData[index] = data[index];
 	data = std::move(newData);
 	allocatedSize = newSize;
+}
+
+bool Array::findValue(int toFind)
+{
+	for (int index = 0; index < currSize; index++)
+		if (data[index] == toFind)
+			return true;
+	return false;
 }
 
 void Array::realocateByStep()

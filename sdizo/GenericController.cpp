@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "GenericController.h"
 
+GenericController::GenericController()
+{
+	initialize();
+}
+
 void GenericController::printView()
 {
-	structure->getStructureView()->print();
-	structure->getMenu()->print();
+	structure->printData();
+	menu->print();
 }

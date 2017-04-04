@@ -6,11 +6,15 @@
 class GenericController
 {
 public:
+	GenericController();
 	virtual ~GenericController() {};
-	virtual void parseInput(std::string input) = 0;
+	virtual void parseInput(const std::string &input) = 0;
 	virtual void printView();
 
 protected:
 	std::unique_ptr<GenericStructure> structure;
+	std::unique_ptr<GenericView> menu;
+
+	virtual void initialize() {};
 };
 

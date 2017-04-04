@@ -81,6 +81,9 @@
     <ClInclude Include="appMenu.h">
       <Filter>Source Files\views\app</Filter>
     </ClInclude>
+    <ClInclude Include="sdizo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
