@@ -20,7 +20,7 @@ void Array::printData()
 	if (!isEmpty())
 		for (int index = 0; index < this->currSize; index++) 
 		{
-			std::cout << data[index];
+			std::cout << '[' << index << '] ' << data[index];
 			if (index % 15 == 0 && index != 0)
 				std::cout << std::endl;
 			else 
@@ -47,7 +47,6 @@ void Array::addElement(int index, int value)
 	else if (index <= currSize)
 	{
 		moveElementsRight(index);
-		currSize++;
 	}
 	else
 	{
@@ -121,13 +120,15 @@ bool Array::isEmpty()
 void Array::moveElementsRight(int index)
 {
 	realocate(allocatedSize + 1);
-	for (int i = currSize - 1; i >= index; i--)
-		data[i + 1] = data[i];
+	for (int i = currSize - 1; i >= index; --i)
+		data[i] = data[i-1];
+	++currSize;
 }
 
 void Array::moveElementsLeft(int index)
 {
-	for (int i = index; i < currSize; i--)
+	for (int i = index; i < currSize-1; ++i)
 		data[i] = data[i + 1];
 	realocate(allocatedSize - 1);
+	--currSize;
 }

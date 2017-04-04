@@ -57,6 +57,10 @@ void ArrayController::loadFromFile()
 
 void ArrayController::deleteFromStructure()
 {
+	int index = 0;
+	cout << "Podaj indeks: ";
+	cin >> index;
+	structure->removeElement(index);
 }
 
 void ArrayController::addToStructure()
