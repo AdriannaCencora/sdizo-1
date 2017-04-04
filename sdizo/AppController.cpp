@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "AppController.h"
+#include "appMenu.h"
 
 void AppController::parseInput(std::string input)
 {
@@ -9,6 +10,12 @@ void AppController::parseInput(std::string input)
 		return;
 	}
 	throw new std::invalid_argument("Unknown controller input");
+}
+
+void AppController::printView()
+{
+	appMenu view;
+	view.print();
 }
 
 void AppController::createArrayAction()

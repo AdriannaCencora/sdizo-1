@@ -6,6 +6,7 @@ class AppController :
 	public:
 		virtual ~AppController() {};
 		virtual void parseInput(std::string input);
+		virtual void printView();
 
 	private:
 		std::unique_ptr<GenericController> controller;

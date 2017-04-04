@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppController.h" />
+    <ClInclude Include="appMenu.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="ArrayController.h" />
     <ClInclude Include="ArrayMenu.h" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppController.cpp" />
+    <ClCompile Include="appMenu.cpp" />
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="ArrayController.cpp" />
     <ClCompile Include="ArrayMenu.cpp" />
