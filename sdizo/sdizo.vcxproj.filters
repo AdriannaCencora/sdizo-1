@@ -60,6 +60,9 @@
     <ClInclude Include="GenericController.h">
       <Filter>Source Files\controllers\GenericController</Filter>
     </ClInclude>
+    <ClInclude Include="GenericStructure.h">
+      <Filter>Source Files\structures\GenericStructure</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
