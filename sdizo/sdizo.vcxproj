@@ -150,6 +150,9 @@
     <ClInclude Include="GenericController.h" />
     <ClInclude Include="GenericStructure.h" />
     <ClInclude Include="GenericView.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="ListController.h" />
+    <ClInclude Include="listMenu.h" />
     <ClInclude Include="sdizo.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -161,6 +164,9 @@
     <ClCompile Include="ArrayController.cpp" />
     <ClCompile Include="ArrayMenu.cpp" />
     <ClCompile Include="GenericController.cpp" />
+    <ClCompile Include="List.cpp" />
+    <ClCompile Include="ListController.cpp" />
+    <ClCompile Include="listMenu.cpp" />
     <ClCompile Include="sdizo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

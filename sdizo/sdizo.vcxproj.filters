@@ -46,6 +46,15 @@
     <Filter Include="Source Files\structures\array">
       <UniqueIdentifier>{c2b3aa28-2d8b-48c5-8ef3-1dbcf9b07e58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\structures\list">
+      <UniqueIdentifier>{15681eea-a156-4a33-a1d2-cce0e5a4b341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\list">
+      <UniqueIdentifier>{cf4ccbb5-13cf-4607-abff-904ee8b2ef85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers\ListController">
+      <UniqueIdentifier>{b033f5ab-21b2-4a44-b233-3dccffdfc0bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -87,6 +96,15 @@
     <ClInclude Include="sdizo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Source Files\structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="listMenu.h">
+      <Filter>Source Files\views\list</Filter>
+    </ClInclude>
+    <ClInclude Include="ListController.h">
+      <Filter>Source Files\controllers\ListController</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -112,6 +130,15 @@
     </ClCompile>
     <ClCompile Include="appMenu.cpp">
       <Filter>Source Files\views\app</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files\structures\list</Filter>
+    </ClCompile>
+    <ClCompile Include="listMenu.cpp">
+      <Filter>Source Files\views\list</Filter>
+    </ClCompile>
+    <ClCompile Include="ListController.cpp">
+      <Filter>Source Files\controllers\ListController</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
