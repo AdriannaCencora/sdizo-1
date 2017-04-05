@@ -13,5 +13,6 @@
 #include <exception>
 #include <Windows.h>
 #include <fstream>
+#include <ctime>
 
 // TODO: reference additional headers your program requires here

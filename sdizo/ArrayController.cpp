@@ -52,6 +52,7 @@ void ArrayController::init()
 {
 	structure = std::make_unique<Array>();
 	menu = std::make_unique<ArrayMenu>();
+	srand((unsigned int)time(NULL));
 }
 
 void ArrayController::loadFromFile()
@@ -97,6 +98,16 @@ void ArrayController::findInStructure()
 
 void ArrayController::generateStructure()
 {
+	int min, max, amount;
+	cout << "Podaj minimaln¹ wartoœæ: ";
+	cin >> min;
+	cout << "Podaj maksymaln¹ wartoœæ: ";
+	cin >> max;
+	cout << "Podaj iloœæ: ";
+	cin >> amount;
+
+	for (int i = 0; i < amount; ++i)
+		structure->addElement(rand() % max + min);
 }
 
 void ArrayController::testStructure()
