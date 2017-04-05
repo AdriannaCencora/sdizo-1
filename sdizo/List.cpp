@@ -7,7 +7,7 @@ void List::printData()
 {
 	if (!isEmpty()) 
 	{
-		Node* tmp = head.get;
+		Node* tmp = head.get();
 
 		while (tmp->next != nullptr)
 		{
@@ -15,7 +15,7 @@ void List::printData()
 		}
 		cout << endl;
 
-		Node* tmp = tail.get;
+		tmp = tail.get();
 
 		while (tmp->prev != nullptr)
 		{
@@ -101,7 +101,7 @@ bool List::isEmpty()
 
 shared_ptr<List::Node> List::getNodePtr(int index)
 {
-	if (isEmpty)
+	if (isEmpty())
 		return nullptr;
 
 	shared_ptr<Node> currNode = head;

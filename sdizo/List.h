@@ -27,6 +27,6 @@ private:
 	std::shared_ptr<Node> head;
 	std::shared_ptr<Node> tail;
 	bool isEmpty();
-	shared_ptr<Node> getNodePtr(int index);
+	std::shared_ptr<Node> getNodePtr(int index);
 };
 

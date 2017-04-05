@@ -85,6 +85,14 @@ void ListController::addToStructure()
 	structure->addElement(index, value);
 }
 
+void ListController::addAtEnd()
+{
+}
+
+void ListController::addAtBeginning()
+{
+}
+
 void ListController::findInStructure()
 {
 	int value = 0;
