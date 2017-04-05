@@ -18,6 +18,7 @@ public:
 private:
 	class Node {
 	public:
+		Node(int value) : data(value) {};
 		std::shared_ptr<Node> next;
 		std::shared_ptr<Node> prev;
 		int	data;
@@ -25,5 +26,6 @@ private:
 
 	std::shared_ptr<Node> head;
 	std::shared_ptr<Node> tail;
+	bool isEmpty();
 };
 
