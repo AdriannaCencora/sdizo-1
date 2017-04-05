@@ -4,7 +4,7 @@ class listMenu :
 	public GenericView
 {
 public:
-	listMenu();
-	virtual ~listMenu();
+	virtual ~listMenu() {};
+	virtual void print();
 };
 
