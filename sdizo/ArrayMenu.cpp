@@ -13,5 +13,6 @@ void ArrayMenu::print()
 	cout << "5.Utworz losowo" << endl;
 	cout << "6.Wyswietl" << endl;
 	cout << "7.Test (pomiary)" << endl;
+	cout << "8.Wyczyœæ" << endl;
 	cout << "0.Powrot do menu" << endl;
 }

@@ -38,6 +38,9 @@ void ArrayController::parseInput(const std::string &input)
 		case 7:
 			this->testStructure();
 			break;
+		case 8:
+			this->clearStructure();
+			break;
 		default:
 			throw new std::invalid_argument("Unknown controller input");
 			break;
@@ -53,6 +56,13 @@ void ArrayController::init()
 
 void ArrayController::loadFromFile()
 {
+	string userInput = "";
+	int currentData;
+	cout << "Podaj nazwê pliku: ";
+	cin >> userInput;
+	ifstream fileStream(userInput);
+	while (fileStream >> currentData)
+		structure->addElement(currentData);
 }
 
 void ArrayController::deleteFromStructure()
@@ -83,4 +93,9 @@ void ArrayController::generateStructure()
 
 void ArrayController::testStructure()
 {
+}
+
+void ArrayController::clearStructure()
+{
+	structure->clearStructure();
 }

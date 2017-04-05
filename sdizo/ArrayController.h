@@ -15,5 +15,6 @@ private:
 	virtual void findInStructure();
 	virtual void generateStructure();
 	virtual void testStructure();
+	virtual void clearStructure();
 };
 

@@ -5,8 +5,8 @@
 
 Array::Array() :
 	data(std::make_unique<int[]>(1))
+	, allocatedSize(1)
 {
-	allocatedSize = 1;
 }
 
 Array::Array(int size) :
@@ -20,7 +20,7 @@ void Array::printData()
 	if (!isEmpty())
 		for (int index = 0; index < this->currSize; index++) 
 		{
-			std::cout << '[' << index << '] ' << data[index];
+			std::cout << "[" << index << "] " << data[index];
 			if (index % 15 == 0 && index != 0)
 				std::cout << std::endl;
 			else 
@@ -100,11 +100,7 @@ bool Array::findValue(int toFind)
 
 void Array::realocateByStep()
 {
-	std::unique_ptr<int[]> newData = std::make_unique<int[]>(allocatedSize + realocationStep);
-	for (int index = 0; index < currSize; index++)
-		newData[index] = data[index];
-	data = std::move(newData);
-	allocatedSize = allocatedSize + realocationStep;
+	realocate(allocatedSize * 2);
 }
 
 int Array::getSize()
