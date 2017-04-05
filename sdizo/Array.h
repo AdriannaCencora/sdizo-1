@@ -17,8 +17,6 @@ public:
 	virtual void realocate(int newSize);
 	virtual bool findValue(int toFind);
 
-	void setValue(int index, int value);
-	int getValue(int index);
 	void setRealocationStep(int newStep);
 	int getRealocationStep();
 	int getSize();

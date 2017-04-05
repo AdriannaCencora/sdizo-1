@@ -3,13 +3,13 @@
 #include "appMenu.h"
 
 #include "ArrayController.h"
+#include "ListController.h"
 
 using namespace std;
 
 AppController::AppController() : GenericController()
 {
 	setlocale(LC_ALL, "Polish");
-	
 }
 
 void AppController::parseInput(const std::string &input)
@@ -24,6 +24,10 @@ void AppController::parseInput(const std::string &input)
 			break;
 		case 1:
 			controller = std::make_unique<ArrayController>();
+			controller->Run();
+			break;
+		case 2:
+			controller = std::make_unique<ListController>();
 			controller->Run();
 			break;
 		default:

@@ -61,6 +61,7 @@ void ArrayController::loadFromFile()
 	int currentData;
 	cout << "Podaj nazwê pliku: ";
 	cin >> userInput;
+	structure->clearStructure();
 	ifstream fileStream(userInput);
 	while (fileStream >> currentData)
 		structure->addElement(currentData);
