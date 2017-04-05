@@ -85,6 +85,14 @@ void ArrayController::addToStructure()
 
 void ArrayController::findInStructure()
 {
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	if (structure->findValue(value))
+		cout << "Ta wartoœæ zosta³a znaleziona w tablicy!\n";
+	else
+		cout << "Ta wartoœæ nie zosta³a znaleziona w tablicy!\n";
+	system("pause");
 }
 
 void ArrayController::generateStructure()
