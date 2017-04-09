@@ -31,11 +31,12 @@ void Heap::removeElement(int value)
 
 void Heap::clearStructure()
 {
+	array->clearStructure();
 }
 
 bool Heap::findValue(int toFind)
 {
-	return false;
+	return array->findValue(toFind);
 }
 
 void Heap::fixUp()
