@@ -7,25 +7,21 @@ Array::Array() :
 	data(std::make_unique<int[]>(1))
 	, allocatedSize(1)
 {
+	isCheap = true;
 }
 
 Array::Array(int size) :
 	data(std::make_unique<int[]>(size))
 {
 	allocatedSize = size;
+	isCheap = false;
 }
 
 void Array::printData()
 {
 	if (!isEmpty())
 		for (int index = 0; index < this->currSize; index++) 
-		{
-			std::cout << "[" << index << "] " << data[index];
-			if (index % 15 == 0 && index != 0)
-				std::cout << std::endl;
-			else 
-				std::cout << ' ';
-		}
+			std::cout << data[index] << ' ';
 	else
 		std::cout << "Tablica jest pusta!";
 	std::cout << std::endl;
@@ -33,25 +29,24 @@ void Array::printData()
 
 void Array::addElement(int index, int value)
 {
-	if (index > allocatedSize - 1)
-	{
-		realocate(index + 1);
-		currSize = index + 1;
-	}
-	else if (index <= currSize)
-	{
-		moveElementsRight(index);
-	}
-	else
-	{
-		currSize = index + 1;
-	}
+	if (index > currSize - 1)
+		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
+	moveElementsRight(index);
 	data[index] = value;
+}
+
+void Array::pushBack(int value)
+{
+	if (currSize + 1 > allocatedSize)
+		realocate(allocatedSize + 1);
+	data[currSize++] = value;
 }
 
 void Array::removeElement(int index)
 {
 	moveElementsLeft(index);
+	if (isCheap)
+		realocate(allocatedSize - 1);
 }
 void Array::clearStructure()
 {
@@ -61,27 +56,15 @@ void Array::clearStructure()
 	allocatedSize = 1;
 }
 
-int Array::getRealocationStep()
-{
-	return realocationStep;
-}
-
-void Array::setRealocationStep(int newStep)
-{
-	if (newStep > 0)
-		realocationStep = newStep;
-	else
-		throw new std::invalid_argument("Value cannot be smaller than 0.");
-}
-
 void Array::realocate(int newSize)
 {
 	std::unique_ptr<int[]> newData = std::make_unique<int[]>(newSize);
-	int moveDataToIndex = (newSize > allocatedSize) ? allocatedSize : newSize;
+	int moveDataToIndex = (newSize > currSize) ? currSize : newSize;
 	for (int index = 0; index < moveDataToIndex; index++)
 		newData[index] = data[index];
 	data = std::move(newData);
 	allocatedSize = newSize;
+	currSize = moveDataToIndex;
 }
 
 bool Array::findValue(int toFind)
@@ -99,7 +82,7 @@ void Array::realocateByStep()
 
 int Array::getSize()
 {
-	return allocatedSize;
+	return currSize;
 }
 
 bool Array::isEmpty()
@@ -109,8 +92,9 @@ bool Array::isEmpty()
 
 void Array::moveElementsRight(int index)
 {
-	realocate(allocatedSize + 1);
-	for (int i = currSize - 1; i >= index; --i)
+	if(allocatedSize < currSize + 1)
+		realocate(allocatedSize + 1);
+	for (int i = currSize + 1; i >= index; --i)
 		data[i] = data[i-1];
 	++currSize;
 }
@@ -119,6 +103,5 @@ void Array::moveElementsLeft(int index)
 {
 	for (int i = index; i < currSize-1; ++i)
 		data[i] = data[i + 1];
-	realocate(allocatedSize - 1);
 	--currSize;
 }
