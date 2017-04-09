@@ -112,6 +112,19 @@ void List::removeElement(int index)
 
 void List::clearStructure()
 {
+	if (!isEmpty())
+	{
+		shared_ptr<Node> currNode = head;
+		while (currNode->next != nullptr)
+		{
+			currNode = currNode->next;
+			currNode->prev->next.reset();
+			currNode->prev.reset();
+		}
+		head.reset();
+		tail.reset();
+		size = 0;
+	}
 }
 
 bool List::findValue(int toFind)
