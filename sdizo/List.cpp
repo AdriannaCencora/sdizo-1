@@ -9,24 +9,27 @@ void List::printData()
 	{
 		Node* tmp = head.get();
 
-		while (tmp->next != nullptr)
+		while (tmp != nullptr)
 		{
 			cout << tmp->data << " ";
+			tmp = tmp->next.get();
 		}
 		cout << endl;
 
 		tmp = tail.get();
 
-		while (tmp->prev != nullptr)
+		while (tmp != nullptr)
 		{
 			cout << tmp->data << " ";
-		}	
+			tmp = tmp->prev.get();
+		}
+		cout << endl;
 	}	
 	else 
 		cout << "Lista jest pusta" << endl;
 }
 
-void List::addElement(int value)
+void List::pushBack(int value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 	
@@ -41,26 +44,48 @@ void List::addElement(int value)
 		tail = newNode;
 		head = newNode;
 	}
+
+	++size;
+}
+
+void List::pushFront(int value)
+{
+	shared_ptr<Node> newNode = make_shared<Node>(value);
+
+	if (!isEmpty())
+	{
+		head->prev = newNode;
+		newNode->next = head;
+		head = newNode;
+	}
+	else
+	{
+		tail = newNode;
+		head = newNode;
+	}
+
+	++size;
 }
 
 void List::addElement(int index, int value)
 {
-	if (isEmpty())
-		addElement(value);
-	shared_ptr<Node> newNode = make_shared<Node>(index);
+	shared_ptr<Node> newNode = make_shared<Node>(value);
 	shared_ptr<Node> currNode = getNodePtr(index);
 	if (currNode != nullptr)
 	{
 		if (currNode->prev == nullptr)
 			head = newNode;
+		else
+			currNode->prev->next = newNode;
 		if (currNode->next == nullptr)
-			tail = newNode;
-		currNode->prev->next = newNode;
+			tail = currNode;
+		newNode->prev = currNode->prev;
 		currNode->prev = newNode;
 		newNode->next = currNode;
 	}
 	else
 		throw invalid_argument("Indeks poza zakresem");
+	++size;
 }
 
 void List::removeElement(int index)
@@ -81,6 +106,8 @@ void List::removeElement(int index)
 	
 	toDelete->prev.reset();
 	toDelete->next.reset();
+
+	--size;
 }
 
 void List::clearStructure()
@@ -94,9 +121,7 @@ bool List::findValue(int toFind)
 
 bool List::isEmpty()
 {
-	if (head == nullptr || tail == nullptr)
-		return true;
-	return false;
+	return size == 0;
 }
 
 shared_ptr<List::Node> List::getNodePtr(int index)

@@ -42,7 +42,7 @@ void ListController::parseInput(const std::string &input)
 		this->clearStructure();
 		break;
 	default:
-		throw new std::invalid_argument("Unknown controller input");
+		throw std::invalid_argument("Unknown controller input");
 		break;
 	}
 	system("cls");
@@ -77,20 +77,50 @@ void ListController::deleteFromStructure()
 
 void ListController::addToStructure()
 {
-	int index = 0, value = 0;
-	cout << "Podaj indeks: ";
-	cin >> index;
-	cout << "Podaj wartoœæ: ";
-	cin >> value;
-	structure->addElement(index, value);
+	int index = 0, value = 0, parsedInput = -1;
+	string input = "";
+
+	cout << "p - dodaj na pocz¹tku" << endl;
+	cout << "k - dodaj na koñcu" << endl;
+	cout << "i - dodaj w œrodku" << endl;
+	cout << "Twój wybór: ";
+	cin >> input;
+
+
+	switch (input.c_str()[0])
+	{
+		case 'p':
+			addAtBeginning();
+			break;
+		case 'k':
+			addAtEnd();
+			break;
+		case 'i':
+			cout << "Podaj indeks: ";
+			cin >> index;
+			cout << "Podaj wartoœæ: ";
+			cin >> value;
+			structure->addElement(index, value);
+			break;
+		default:
+			throw std::invalid_argument("Unknown action input");
+	}
 }
 
 void ListController::addAtEnd()
 {
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	structure->pushBack(value);
 }
 
 void ListController::addAtBeginning()
 {
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	structure->pushFront(value);
 }
 
 void ListController::findInStructure()

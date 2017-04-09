@@ -8,8 +8,9 @@ public:
 	virtual ~List() {};
 
 	virtual void printData();
-
-	virtual void addElement(int value);
+	
+	virtual void pushBack(int value);
+	virtual void pushFront(int value);
 	virtual void addElement(int index, int value);
 	virtual void removeElement(int index);
 	virtual void clearStructure();
@@ -28,5 +29,6 @@ private:
 	std::shared_ptr<Node> tail;
 	bool isEmpty();
 	std::shared_ptr<Node> getNodePtr(int index);
+	int size = 0;
 };
 

@@ -55,6 +55,9 @@
     <Filter Include="Source Files\controllers\ListController">
       <UniqueIdentifier>{b033f5ab-21b2-4a44-b233-3dccffdfc0bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{e463f5c8-0b5f-417a-a1bc-371a6d4258e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -104,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="ListController.h">
       <Filter>Source Files\controllers\ListController</Filter>
+    </ClInclude>
+    <ClInclude Include="NotImplementedException.h">
+      <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

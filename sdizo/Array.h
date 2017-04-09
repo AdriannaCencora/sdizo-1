@@ -10,8 +10,9 @@ public:
 
 	virtual void printData();
 
-	virtual void addElement(int value);
 	virtual void addElement(int index, int value);
+	/*virtual void pushBack(int value);
+	virtual void pushFront(int value);*/
 	virtual void removeElement(int index);
 	virtual void clearStructure();
 	virtual void realocate(int newSize);

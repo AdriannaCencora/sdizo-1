@@ -31,12 +31,6 @@ void Array::printData()
 	std::cout << std::endl;
 }
 
-void Array::addElement(int value)
-{
-	if (currSize + 1 > allocatedSize)
-		realocateByStep();
-	data[currSize++] = value;
-}
 void Array::addElement(int index, int value)
 {
 	if (index > allocatedSize - 1)
