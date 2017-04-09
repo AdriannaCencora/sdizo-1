@@ -90,6 +90,27 @@ bool Array::isEmpty()
 	return (currSize == 0);
 }
 
+int Array::getValue(int index)
+{
+	if (index >= currSize)
+		throw std::invalid_argument("Out of array range");
+	return data[index];
+}
+
+void Array::setValue(int index, int value)
+{
+	if (index >= currSize)
+		throw std::invalid_argument("Out of array range");
+	data[index] = value;
+}
+
+void Array::swap(int b, int a)
+{
+	int tmp = data[b];
+	data[b] = data[a];
+	data[a] = tmp;
+}
+
 int Array::operator[](int index)
 {
 	return data[index];

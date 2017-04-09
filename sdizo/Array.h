@@ -20,6 +20,9 @@ public:
 
 	bool isEmpty();
 
+	int getValue(int index);
+	void setValue(int index, int value);
+	void swap(int b, int a);
 	int operator[](int index);
 private:
 	std::unique_ptr<int[]> data;
