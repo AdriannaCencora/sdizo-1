@@ -88,11 +88,18 @@ void List::addElement(int index, int value)
 	++size;
 }
 
-void List::removeElement(int index)
+void List::removeElement(int value)
 {
-	shared_ptr<Node> toDelete = getNodePtr(index);
-	if (toDelete == nullptr)
-		throw new invalid_argument("Nieprawid³owy indeks");
+	if (!findValue(value))
+		throw new invalid_argument("Dana wartoœæ nie istnieje w liœcie");
+
+	shared_ptr<Node> toDelete = head;
+	while (toDelete != nullptr)
+	{
+		if (toDelete->data == value)
+			break;
+		toDelete = toDelete->next;
+	}
 
 	if (toDelete->prev == nullptr)
 		head = toDelete->next;

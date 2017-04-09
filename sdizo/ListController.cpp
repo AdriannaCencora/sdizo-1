@@ -69,10 +69,10 @@ void ListController::loadFromFile()
 
 void ListController::deleteFromStructure()
 {
-	int index = 0;
-	cout << "Podaj indeks: ";
-	cin >> index;
-	structure->removeElement(index);
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	structure->removeElement(value);
 }
 
 void ListController::addToStructure()
@@ -146,7 +146,7 @@ void ListController::generateStructure()
 	cin >> amount;
 
 	for (int i = 0; i < amount; ++i)
-		structure->addElement(rand() % max + min);
+		structure->pushBack(rand() % max + min);
 }
 
 void ListController::testStructure()

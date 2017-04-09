@@ -12,7 +12,7 @@ public:
 	virtual void pushBack(int value);
 	virtual void pushFront(int value);
 	virtual void addElement(int index, int value);
-	virtual void removeElement(int index);
+	virtual void removeElement(int value);
 	virtual void clearStructure();
 	virtual bool findValue(int toFind);
 
