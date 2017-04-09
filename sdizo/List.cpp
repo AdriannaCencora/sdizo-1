@@ -116,6 +116,16 @@ void List::clearStructure()
 
 bool List::findValue(int toFind)
 {
+	if (isEmpty())
+		return false;
+
+	shared_ptr<Node> currNode = head;
+	while (currNode != nullptr)
+	{
+		if (currNode->data == toFind)
+			return true;
+		currNode = currNode->next;
+	}
 	return false;
 }
 
