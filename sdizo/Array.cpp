@@ -90,6 +90,11 @@ bool Array::isEmpty()
 	return (currSize == 0);
 }
 
+int Array::operator[](int index)
+{
+	return data[index];
+}
+
 void Array::moveElementsRight(int index)
 {
 	if(allocatedSize < currSize + 1)

@@ -9,5 +9,6 @@ void appMenu::print()
 	cout << "==== Menu g³ówne ===" << endl;
 	cout << "1.Tablica" << endl;
 	cout << "2.Lista dwustronna" << endl;
+	cout << "3.Kopiec" << endl;
 	cout << "0.Wyjscie" << endl;
 }

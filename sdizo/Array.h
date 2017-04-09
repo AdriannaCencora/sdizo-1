@@ -20,6 +20,7 @@ public:
 
 	bool isEmpty();
 
+	int operator[](int index);
 private:
 	std::unique_ptr<int[]> data;
 	int currSize = 0;
