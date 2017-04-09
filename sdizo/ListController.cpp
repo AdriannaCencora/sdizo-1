@@ -64,7 +64,7 @@ void ListController::loadFromFile()
 	structure->clearStructure();
 	ifstream fileStream(userInput);
 	while (fileStream >> currentData)
-		structure->addElement(currentData);
+		structure->pushBack(currentData);
 }
 
 void ListController::deleteFromStructure()
