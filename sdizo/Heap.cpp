@@ -27,6 +27,19 @@ void Heap::addElement(int value)
 
 void Heap::removeElement(int value)
 {
+	int indexFound = -1;
+	int lastElementIndex = -1;
+	for (int index = 0; index < array->getSize(); ++index)
+		if (array->operator[](index) == value)
+		{
+			indexFound = index;
+			lastElementIndex = array->getSize() - 1;	
+			break;
+		}
+
+	array->swap(indexFound, lastElementIndex);
+	array->removeElement(lastElementIndex);
+	fixDown(indexFound);
 }
 
 void Heap::clearStructure()
@@ -54,8 +67,36 @@ void Heap::fixUp()
 	}
 }
 
-void Heap::fixDown()
+void Heap::fixDown(int index)
 {
+	int leftChild;
+	int rightChild;
+	bool isLeft, isRight;
+	isLeft = isRight = true;
+	while (isLeft || isRight)
+	{
+		isLeft = isRight = true;
+		leftChild = index * 2 + 1;
+		rightChild = index * 2 + 2;
+		
+		if (leftChild >= array->getSize() || array->getValue(index) > array->getValue(leftChild))
+			isLeft = false;
+		else
+		{
+			array->swap(index, leftChild);
+			index = leftChild;	
+		}
+
+		if (rightChild >= array->getSize() || array->getValue(index) > array->getValue(rightChild))
+			isRight = false;
+		else
+		{
+			array->swap(index, rightChild);
+			index = rightChild;
+		}
+		this->printData();
+		system("pause");
+	}
 }
 
 void Heap::printNode(string& sMiddle, string &sBefore, int currNode)

@@ -8,6 +8,9 @@ c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\array.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\arraycontroller.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\arraymenu.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\genericcontroller.obj
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\heap.obj
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\heapcontroller.obj
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\heapmenu.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\list.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\listcontroller.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\listmenu.obj
@@ -15,9 +18,13 @@ c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.obj
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.ilk
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.exe
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.pdb
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.res
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\cl.command.1.tlog
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\cl.read.1.tlog
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\cl.write.1.tlog
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\link.command.1.tlog
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\link.read.1.tlog
 c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\link.write.1.tlog
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\rc.command.1.tlog
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\rc.read.1.tlog
+c:\users\jkr\source\repos\sdizo\sdizo\x64\debug\sdizo.tlog\rc.write.1.tlog

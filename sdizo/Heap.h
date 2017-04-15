@@ -21,7 +21,7 @@ private:
 	
 	std::unique_ptr<Array> array;
 	void fixUp();
-	void fixDown();
+	void fixDown(int index);
 	void printNode(std::string &sMiddle, std::string &sBefore, int currNode);
 };
 
