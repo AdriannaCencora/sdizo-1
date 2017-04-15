@@ -55,6 +55,18 @@
     <Filter Include="Source Files\controllers\ListController">
       <UniqueIdentifier>{b033f5ab-21b2-4a44-b233-3dccffdfc0bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{e463f5c8-0b5f-417a-a1bc-371a6d4258e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures\heap">
+      <UniqueIdentifier>{e7c9c0e0-947b-45bc-861a-9a752cad5cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers\HeapController">
+      <UniqueIdentifier>{8003e32f-ac91-4e3c-b4c0-76efe1605975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\heap">
+      <UniqueIdentifier>{087d5673-4118-402e-80ff-4d1c5db0eea6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -105,6 +117,21 @@
     <ClInclude Include="ListController.h">
       <Filter>Source Files\controllers\ListController</Filter>
     </ClInclude>
+    <ClInclude Include="NotImplementedException.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>Source Files\structures\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapController.h">
+      <Filter>Source Files\controllers\HeapController</Filter>
+    </ClInclude>
+    <ClInclude Include="heapMenu.h">
+      <Filter>Source Files\views\heap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -140,5 +167,19 @@
     <ClCompile Include="ListController.cpp">
       <Filter>Source Files\controllers\ListController</Filter>
     </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>Source Files\structures\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapController.cpp">
+      <Filter>Source Files\controllers\HeapController</Filter>
+    </ClCompile>
+    <ClCompile Include="heapMenu.cpp">
+      <Filter>Source Files\views\heap</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sdizo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

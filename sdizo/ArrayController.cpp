@@ -77,12 +77,32 @@ void ArrayController::deleteFromStructure()
 
 void ArrayController::addToStructure()
 {
-	int index = 0, value = 0;
-	cout << "Podaj indeks: ";
-	cin >> index;
-	cout << "Podaj wartoœæ: ";
-	cin >> value;
-	structure->addElement(index, value);
+	int index = 0, value = 0, parsedInput = -1;
+	string input = "";
+
+	cout << "k - dodaj na koñcu" << endl;
+	cout << "i - dodaj w œrodku" << endl;
+	cout << "Twój wybór: ";
+	cin >> input;
+
+
+	switch (input.c_str()[0])
+	{
+		case 'k':
+			cout << "Podaj wartoœæ: ";
+			cin >> value;
+			structure->pushBack(value);
+			break;
+		case 'i':
+			cout << "Podaj indeks: ";
+			cin >> index;
+			cout << "Podaj wartoœæ: ";
+			cin >> value;
+			structure->addElement(index, value);
+			break;
+		default:
+			throw std::invalid_argument("Unknown action input");
+	}
 }
 
 void ArrayController::findInStructure()
@@ -108,7 +128,7 @@ void ArrayController::generateStructure()
 	cin >> amount;
 
 	for (int i = 0; i < amount; ++i)
-		structure->addElement(rand() % max + min);
+		structure->pushBack(rand() % max + min);
 }
 
 void ArrayController::testStructure()
