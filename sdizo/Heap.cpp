@@ -27,19 +27,22 @@ void Heap::addElement(int value)
 
 void Heap::removeElement(int value)
 {
-	int indexFound = -1;
-	int lastElementIndex = -1;
-	for (int index = 0; index < array->getSize(); ++index)
-		if (array->operator[](index) == value)
-		{
-			indexFound = index;
-			lastElementIndex = array->getSize() - 1;	
-			break;
-		}
+	if (array->findValue(value))
+	{
+		int indexFound = -1;
+		int lastElementIndex = -1;
+		for (int index = 0; index < array->getSize(); ++index)
+			if (array->operator[](index) == value)
+			{
+				indexFound = index;
+				lastElementIndex = array->getSize() - 1;	
+				break;
+			}
 
-	array->swap(indexFound, lastElementIndex);
-	array->removeElement(lastElementIndex);
-	fixDown(indexFound);
+		array->swap(indexFound, lastElementIndex);
+		array->removeElement(lastElementIndex);
+		fixDown(indexFound);
+	}
 }
 
 void Heap::clearStructure()

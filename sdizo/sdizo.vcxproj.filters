@@ -132,6 +132,15 @@
     <ClInclude Include="heapMenu.h">
       <Filter>Source Files\views\heap</Filter>
     </ClInclude>
+    <ClInclude Include="BSTTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BSTController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BSTMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -175,6 +184,15 @@
     </ClCompile>
     <ClCompile Include="heapMenu.cpp">
       <Filter>Source Files\views\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="BSTTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BSTController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BSTMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
