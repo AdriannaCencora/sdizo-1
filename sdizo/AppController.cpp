@@ -5,6 +5,7 @@
 #include "ArrayController.h"
 #include "ListController.h"
 #include "HeapController.h"
+#include "BSTController.h"
 
 using namespace std;
 
@@ -33,6 +34,10 @@ void AppController::parseInput(const std::string &input)
 			break;
 		case 3:
 			controller = std::make_unique<HeapController>();
+			controller->Run();
+			break;
+		case 4:
+			controller = std::make_unique<BSTController>();
 			controller->Run();
 			break;
 		default:
