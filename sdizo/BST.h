@@ -19,14 +19,14 @@ public:
 
 private:
 
-	
 
 	struct Node {
 		Node* parent;
 		unique_ptr<Node> right;
 		unique_ptr<Node> left;
 		int	  value;
-	}
+	};
 	
+	Node* root = null_ptr;
 };
 
