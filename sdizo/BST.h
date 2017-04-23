@@ -27,6 +27,6 @@ private:
 		int	  value;
 	};
 	
-	Node* root = null_ptr;
+	Node* root = nullptr;
 };
 
