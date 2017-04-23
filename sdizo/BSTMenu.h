@@ -4,7 +4,9 @@ class BSTMenu :
 	public GenericView
 {
 public:
-	BSTMenu();
-	virtual ~BSTMenu();
+	BSTMenu() = default;
+	virtual ~BSTMenu() = default;
+
+	virtual void print();
 };
 

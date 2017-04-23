@@ -52,7 +52,6 @@ void ArrayController::init()
 {
 	structure = std::make_unique<Array>();
 	menu = std::make_unique<ArrayMenu>();
-	srand((unsigned int)time(NULL));
 }
 
 void ArrayController::loadFromFile()

@@ -54,5 +54,6 @@ void AppController::printView()
 void AppController::init()
 {
 	menu = std::make_unique<appMenu>();
+	srand((unsigned int)time(NULL));
 }
 

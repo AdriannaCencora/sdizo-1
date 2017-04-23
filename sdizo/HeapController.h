@@ -8,7 +8,7 @@ public:
 	virtual void parseInput(const std::string &input);
 	virtual void init();
 
-private:
+protected:
 	virtual void loadFromFile();
 	virtual void deleteFromStructure();
 	virtual void addToStructure();

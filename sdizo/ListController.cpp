@@ -52,7 +52,6 @@ void ListController::init()
 {
 	structure = std::make_unique<List>();
 	menu = std::make_unique<listMenu>();
-	srand((unsigned int)time(NULL));
 }
 
 void ListController::loadFromFile()

@@ -149,7 +149,7 @@
     <ClInclude Include="ArrayMenu.h" />
     <ClInclude Include="BSTController.h" />
     <ClInclude Include="BSTMenu.h" />
-    <ClInclude Include="BSTTree.h" />
+    <ClInclude Include="BST.h" />
     <ClInclude Include="GenericController.h" />
     <ClInclude Include="GenericStructure.h" />
     <ClInclude Include="GenericView.h" />
@@ -173,7 +173,7 @@
     <ClCompile Include="ArrayMenu.cpp" />
     <ClCompile Include="BSTController.cpp" />
     <ClCompile Include="BSTMenu.cpp" />
-    <ClCompile Include="BSTTree.cpp" />
+    <ClCompile Include="BST.cpp" />
     <ClCompile Include="GenericController.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="HeapController.cpp" />

@@ -147,7 +147,7 @@
     <ClInclude Include="BSTMenu.h">
       <Filter>Source Files\views\BST</Filter>
     </ClInclude>
-    <ClInclude Include="BSTTree.h">
+    <ClInclude Include="BST.h">
       <Filter>Source Files\structures\BST</Filter>
     </ClInclude>
   </ItemGroup>
@@ -200,7 +200,7 @@
     <ClCompile Include="BSTMenu.cpp">
       <Filter>Source Files\views\BST</Filter>
     </ClCompile>
-    <ClCompile Include="BSTTree.cpp">
+    <ClCompile Include="BST.cpp">
       <Filter>Source Files\structures\BST</Filter>
     </ClCompile>
   </ItemGroup>
