@@ -7,7 +7,7 @@
 class GenericStructure
 {
 public:
-	virtual ~GenericStructure() {};
+	virtual ~GenericStructure() = default;
 
 	virtual void addElement(int value) { throw NotImplementedException(); };
 	virtual void addElement(int index, int value) { throw NotImplementedException(); };

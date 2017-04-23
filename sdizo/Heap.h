@@ -18,10 +18,12 @@ public:
 	virtual bool findValue(int toFind);
 
 private:
-	
+	virtual void fixUp();
+	virtual void fixDown(int index);
+
+
+protected:
 	std::unique_ptr<Array> array;
-	void fixUp();
-	void fixDown(int index);
 	void printNode(std::string &sMiddle, std::string &sBefore, int currNode);
 };
 
