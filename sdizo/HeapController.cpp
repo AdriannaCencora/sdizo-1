@@ -52,6 +52,7 @@ void HeapController::init()
 {
 	structure = std::make_unique<Heap>();
 	menu = std::make_unique<heapMenu>();
+	srand((unsigned int)time(NULL));
 }
 
 void HeapController::loadFromFile()
@@ -86,7 +87,14 @@ void HeapController::addToStructure()
 
 void HeapController::findInStructure()
 {
-	throw NotImplementedException();
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	if (structure->findValue(value))
+		cout << "Ta wartoœæ zosta³a znaleziona w kopcu!\n";
+	else
+		cout << "Ta wartoœæ nie zosta³a znaleziona w kopcu!\n";
+	system("pause");
 }
 
 void HeapController::generateStructure()

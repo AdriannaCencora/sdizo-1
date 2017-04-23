@@ -3,6 +3,8 @@
 #include "BST.h"
 #include "BSTMenu.h"
 
+using namespace std;
+
 void BSTController::parseInput(const std::string & input)
 {
 	int parsedInput = -1;
@@ -56,7 +58,14 @@ void BSTController::init()
 
 void BSTController::findInStructure()
 {
-	throw NotImplementedException();
+	int value = 0;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
+	if (structure->findValue(value))
+		cout << "Ta wartoœæ zosta³a znaleziona w drzewie!\n";
+	else
+		cout << "Ta wartoœæ nie zosta³a znaleziona w drzewie!\n";
+	system("pause");
 }
 
 void BSTController::repair()

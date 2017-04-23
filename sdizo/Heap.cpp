@@ -52,6 +52,11 @@ void Heap::clearStructure()
 
 bool Heap::findValue(int toFind)
 {
+	if (array->isEmpty())
+		return false;
+
+	if (array->getValue(0) < toFind)
+		return false;
 	return array->findValue(toFind);
 }
 
