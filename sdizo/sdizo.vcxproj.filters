@@ -67,6 +67,15 @@
     <Filter Include="Source Files\views\heap">
       <UniqueIdentifier>{087d5673-4118-402e-80ff-4d1c5db0eea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\controllers\BSTController">
+      <UniqueIdentifier>{f878060f-1bfa-4d31-ac31-a56d9a1a1826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\views\BST">
+      <UniqueIdentifier>{4dc91e41-a319-4469-b5a3-d499bd30fb34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures\BST">
+      <UniqueIdentifier>{67c44ad3-f099-49e6-9dfb-7de6add308c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -132,14 +141,14 @@
     <ClInclude Include="heapMenu.h">
       <Filter>Source Files\views\heap</Filter>
     </ClInclude>
-    <ClInclude Include="BSTTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BSTController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\controllers\BSTController</Filter>
     </ClInclude>
     <ClInclude Include="BSTMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\views\BST</Filter>
+    </ClInclude>
+    <ClInclude Include="BSTTree.h">
+      <Filter>Source Files\structures\BST</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,14 +194,14 @@
     <ClCompile Include="heapMenu.cpp">
       <Filter>Source Files\views\heap</Filter>
     </ClCompile>
-    <ClCompile Include="BSTTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BSTController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\controllers\BSTController</Filter>
     </ClCompile>
     <ClCompile Include="BSTMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views\BST</Filter>
+    </ClCompile>
+    <ClCompile Include="BSTTree.cpp">
+      <Filter>Source Files\structures\BST</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
