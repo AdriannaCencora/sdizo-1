@@ -19,9 +19,9 @@ public:
 
 private:
 	struct Node {
-		Node* parent;
-		unique_ptr<Node> right;
-		unique_ptr<Node> left;
+		Node* parent = nullptr;
+		unique_ptr<Node> right = nullptr;
+		unique_ptr<Node> left = nullptr;
 		int	  value;
 	};
 	
