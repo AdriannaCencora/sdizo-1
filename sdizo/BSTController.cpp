@@ -70,5 +70,7 @@ void BSTController::findInStructure()
 
 void BSTController::repair()
 {
-	throw NotImplementedException();
+	GenericStructure* pointerToCast = structure.get();
+	BST* castedPointer = (BST*)pointerToCast;
+	castedPointer->fixBalance();
 }
