@@ -27,6 +27,9 @@ private:
 	
 	unique_ptr<Node> root = nullptr;
 
+	Node* getNode(Node* startPoint, int value);
+	Node* getMin(Node* searchPoint);
+	Node* getMax(Node* searchPoint);
 	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
 };
 
