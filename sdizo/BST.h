@@ -10,7 +10,7 @@ public:
 	BST() = default;
 	virtual ~BST() = default;
 
-	virtual void addElement(int value) { throw NotImplementedException(); };
+	virtual void addElement(int value);
 	virtual void removeElement(int value);
 	virtual void clearStructure();
 	virtual bool findValue(int toFind);
@@ -18,8 +18,6 @@ public:
 	virtual void fixBalance();
 
 private:
-
-
 	struct Node {
 		Node* parent;
 		unique_ptr<Node> right;
@@ -27,6 +25,8 @@ private:
 		int	  value;
 	};
 	
-	Node* root = nullptr;
+	unique_ptr<Node> root = nullptr;
+
+	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
 };
 
