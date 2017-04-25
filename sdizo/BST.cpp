@@ -44,25 +44,7 @@ void BST::removeElement(int value)
 	if (root == nullptr)
 		return;
 
-	Node* tmp = root.get();
-
-	while (tmp->value != value)
-	{
-		if (value < tmp->value)
-		{
-			if (tmp->left == nullptr)
-				return;
-
-			tmp = tmp->left.get();
-		}
-		else
-		{
-			if (tmp->right == nullptr)
-				return;
-		
-			tmp = tmp->right.get();
-		}
-	}
+	Node* tmp = getNode(root.get(), value);
 	
 	if (tmp->parent != nullptr)
 	{
@@ -112,6 +94,32 @@ BST::Node * BST::getMax(Node * searchPoint)
 	while (searchPoint->right != nullptr)
 		searchPoint = searchPoint->right.get();
 	return searchPoint;
+}
+
+BST::Node * BST::getPredecessor(Node * searchPoint)
+{
+	if (searchPoint->left != nullptr)
+		return getMax(searchPoint->left.get());
+	Node* parentNode = searchPoint->parent;
+	while (parentNode != nullptr && parentNode->right.get() != searchPoint)
+	{
+		searchPoint = parentNode;
+		parentNode = searchPoint->parent;
+	}
+	return parentNode;
+}
+
+BST::Node * BST::getSuccessor(Node * searchPoint)
+{
+	if (searchPoint->right != nullptr)
+		return getMin(searchPoint->right.get());
+	Node* parentNode = searchPoint->parent;
+	while (parentNode != nullptr && parentNode->left.get() != searchPoint)
+	{
+		searchPoint = parentNode;
+		parentNode = searchPoint->parent;
+	}
+	return parentNode;
 }
 
 void BST::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<Node> &currNode)
