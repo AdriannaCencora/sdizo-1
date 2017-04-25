@@ -32,6 +32,7 @@ private:
 	Node* getMax(Node* searchPoint);
 	Node* getPredecessor(Node* searchPoint);
 	Node* getSuccessor(Node* searchPoint);
+	void removeNode(Node* toDelete);
 	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
 };
 

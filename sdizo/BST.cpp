@@ -41,15 +41,11 @@ void BST::addElement(int value)
 
 void BST::removeElement(int value)
 {
-	if (root == nullptr)
-		return;
+	Node* toDelete = getNode(root.get(), value);
+	if (toDelete != nullptr)
+		removeNode(toDelete);
 
-	Node* tmp = getNode(root.get(), value);
-	
-	if (tmp->parent != nullptr)
-	{
-		//if (tmp->parent);
-	}
+	return;
 }
 
 void BST::clearStructure()
@@ -129,6 +125,58 @@ BST::Node * BST::getSuccessor(Node * searchPoint)
 		parentNode = searchPoint->parent;
 	}
 	return parentNode;
+}
+
+void BST::removeNode(Node * toDelete)
+{
+	Node* childNode = nullptr;
+	Node* parentNode = nullptr;
+
+	//No child case
+	if (toDelete->left == nullptr && toDelete->right == nullptr)
+	{
+		parentNode = toDelete->parent;
+		if (parentNode->left.get() == toDelete)
+			parentNode->left.reset();
+		else
+			parentNode->right.reset();
+		return;
+	}
+
+	//One child case
+	if ((toDelete->left == nullptr) != (toDelete->right == nullptr))
+	{
+		parentNode = toDelete->parent;
+
+		if (parentNode->left.get() == toDelete)
+		{
+			if (toDelete->left != nullptr)
+				parentNode->left = move(toDelete->left);
+			else
+				parentNode->left = move(toDelete->right);
+			parentNode->left->parent = parentNode;
+			
+		}
+		else
+		{
+			if (toDelete->left != nullptr)
+				parentNode->right = move(toDelete->left);
+			else
+				parentNode->right = move(toDelete->right);
+			parentNode->right->parent = parentNode;
+		}
+		return;
+	}
+
+	//To child case
+	if (toDelete->left != nullptr && toDelete->right != nullptr)
+	{
+		childNode = getSuccessor(toDelete);
+
+		toDelete->value = childNode->value;
+
+		removeNode(childNode);
+	}
 }
 
 void BST::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<Node> &currNode)
