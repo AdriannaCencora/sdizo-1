@@ -59,7 +59,15 @@ void BST::clearStructure()
 
 bool BST::findValue(int toFind)
 {
-	return false;
+	Node* searchPoint = root.get();
+	while (searchPoint != nullptr && searchPoint->value != toFind)
+	{
+		if (toFind < searchPoint->value)
+			searchPoint = searchPoint->left.get();
+		else
+			searchPoint = searchPoint->right.get();
+	}
+	return (searchPoint != nullptr);
 }
 
 void BST::printData()
@@ -73,7 +81,7 @@ void BST::fixBalance()
 
 BST::Node * BST::getNode(Node * startPoint, int value)
 {
-	while (startPoint != nullptr && startPoint->value == value)
+	while (startPoint != nullptr && startPoint->value != value)
 	{
 		if (value < startPoint->value)
 			startPoint = startPoint->left.get();
