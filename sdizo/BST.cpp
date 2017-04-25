@@ -75,6 +75,22 @@ void BST::fixBalance()
 {
 }
 
+void BST::rotateLeft(Node * axis)
+{
+}
+
+void BST::rotateRight(Node * axis)
+{
+}
+
+void BST::makeLinear()
+{
+}
+
+void BST::makeBalanced()
+{
+}
+
 BST::Node * BST::getNode(Node * startPoint, int value)
 {
 	while (startPoint != nullptr && startPoint->value != value)

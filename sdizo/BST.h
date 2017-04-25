@@ -27,6 +27,10 @@ private:
 	
 	unique_ptr<Node> root = nullptr;
 
+	void rotateLeft(Node* axis);
+	void rotateRight(Node* axis);
+	void makeLinear();
+	void makeBalanced();
 	Node* getNode(Node* startPoint, int value);
 	Node* getMin(Node* searchPoint);
 	Node* getMax(Node* searchPoint);
