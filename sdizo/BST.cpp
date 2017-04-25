@@ -48,12 +48,13 @@ void BST::removeElement(int value)
 	
 	if (tmp->parent != nullptr)
 	{
-		if (tmp->parent);
+		//if (tmp->parent);
 	}
 }
 
 void BST::clearStructure()
 {
+	root.reset();
 }
 
 bool BST::findValue(int toFind)
@@ -79,7 +80,7 @@ BST::Node * BST::getNode(Node * startPoint, int value)
 		else
 			startPoint = startPoint->right.get();
 	}
-	return startPoint
+	return startPoint;
 }
 
 BST::Node * BST::getMin(Node * searchPoint)

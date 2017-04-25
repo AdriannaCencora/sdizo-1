@@ -9,7 +9,6 @@ c:\users\krzem\documents\repa\sdizo\sdizo\debug\arraycontroller.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\arraymenu.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\bstcontroller.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\bstmenu.obj
-c:\users\krzem\documents\repa\sdizo\sdizo\debug\bst.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\genericcontroller.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\heap.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\heapcontroller.obj
@@ -18,6 +17,7 @@ c:\users\krzem\documents\repa\sdizo\sdizo\debug\list.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\listcontroller.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\listmenu.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\sdizo.obj
+c:\users\krzem\documents\repa\sdizo\sdizo\debug\bst.obj
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\sdizo.ilk
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\sdizo.exe
 c:\users\krzem\documents\repa\sdizo\sdizo\debug\sdizo.pdb
