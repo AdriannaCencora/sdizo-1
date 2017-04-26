@@ -189,8 +189,6 @@ void BST::makeBalanced()
 	{
 		rotateLeft(currAxis);
 		currAxis = currAxis->parent->right.get();
-		printData();
-		system("pause");
 	}
 
 	while (secondRotationRound > 1)
@@ -201,7 +199,6 @@ void BST::makeBalanced()
 		{
 			rotateLeft(currAxis);
 			currAxis = currAxis->parent->right.get();
-			system("pause");
 		}
 	}
 }
@@ -353,7 +350,7 @@ void BST::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<Nod
 
 		s = s.substr(0, sMiddle.length() - 2);
 
-		cout << s << sBefore << currNode->value << "[" << ((currNode->parent == nullptr)? -1 : currNode->parent->value) <<"]" << endl;
+		cout << s << sBefore << currNode->value << endl;
 
 		s = sMiddle;
 		if (sBefore == (string(1, (char)92)) + string(1, (char)126))
