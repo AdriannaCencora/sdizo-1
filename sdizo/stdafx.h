@@ -14,5 +14,6 @@
 #include <Windows.h>
 #include <fstream>
 #include <ctime>
+#include <sstream>
 
 // TODO: reference additional headers your program requires here

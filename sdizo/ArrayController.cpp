@@ -54,17 +54,6 @@ void ArrayController::init()
 	menu = std::make_unique<ArrayMenu>();
 }
 
-void ArrayController::loadFromFile()
-{
-	string userInput = "";
-	int currentData;
-	cout << "Podaj nazwê pliku: ";
-	cin >> userInput;
-	structure->clearStructure();
-	ifstream fileStream(userInput);
-	while (fileStream >> currentData)
-		structure->addElement(currentData);
-}
 
 void ArrayController::deleteFromStructure()
 {

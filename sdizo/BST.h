@@ -32,10 +32,13 @@ private:
 	void makeLinear();
 	void makeBalanced();
 	Node* getNode(Node* startPoint, int value);
+	unique_ptr<Node>* getUniqueNode(Node* toGet);
 	Node* getMin(Node* searchPoint);
 	Node* getMax(Node* searchPoint);
 	Node* getPredecessor(Node* searchPoint);
 	Node* getSuccessor(Node* searchPoint);
+	bool isLeftChild(Node* child);
+	bool isRightChild(Node* child);
 	void removeNode(Node* toDelete);
 	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
 };

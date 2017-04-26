@@ -35,6 +35,11 @@ void Array::addElement(int index, int value)
 	data[index] = value;
 }
 
+void Array::addElement(int value)
+{
+	pushBack(value);
+}
+
 void Array::pushBack(int value)
 {
 	if (currSize + 1 > allocatedSize)

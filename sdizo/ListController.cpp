@@ -54,17 +54,6 @@ void ListController::init()
 	menu = std::make_unique<listMenu>();
 }
 
-void ListController::loadFromFile()
-{
-	string userInput = "";
-	int currentData;
-	cout << "Podaj nazwê pliku: ";
-	cin >> userInput;
-	structure->clearStructure();
-	ifstream fileStream(userInput);
-	while (fileStream >> currentData)
-		structure->pushBack(currentData);
-}
 
 void ListController::deleteFromStructure()
 {

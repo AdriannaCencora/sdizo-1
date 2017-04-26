@@ -88,6 +88,11 @@ void List::addElement(int index, int value)
 	++size;
 }
 
+void List::addElement(int value)
+{
+	pushBack(value);
+}
+
 void List::removeElement(int value)
 {
 	if (!findValue(value))

@@ -14,6 +14,29 @@ void GenericController::printView()
 	menu->print();
 }
 
+void GenericController::loadFromFile()
+{
+	string userInput = "";
+	int currentData;
+	string line = "";
+
+	cout << "Podaj nazwê pliku: ";
+	cin >> userInput;
+	structure->clearStructure();
+
+	ifstream fileStream(userInput);
+
+	while (getline(fileStream, line))
+	{
+		if (!line.empty())
+		{
+			istringstream iss(line);
+			while (iss >> currentData)
+				structure->addElement(currentData);
+		}
+	}
+}
+
 void GenericController::Run()
 {
 	init();

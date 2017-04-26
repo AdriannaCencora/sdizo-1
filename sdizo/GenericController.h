@@ -10,6 +10,7 @@ public:
 	virtual ~GenericController() {};
 	virtual void parseInput(const std::string &input) = 0;
 	virtual void printView();
+	virtual void loadFromFile();
 	bool isRunning();
 	void Run();
 	void Stop();

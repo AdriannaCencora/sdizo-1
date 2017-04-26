@@ -73,6 +73,7 @@ void BST::printData()
 
 void BST::fixBalance()
 {
+	makeLinear();
 }
 
 void BST::rotateLeft(Node * axis)
@@ -81,10 +82,45 @@ void BST::rotateLeft(Node * axis)
 
 void BST::rotateRight(Node * axis)
 {
+	if (axis->left == nullptr)
+		return;
+
+	unique_ptr<BST::Node>* axisUnique = getUniqueNode(axis);
+	unique_ptr<BST::Node> tmp;
+	tmp = move(*axisUnique);
+	/*
+	if (axis->parent != nullptr)
+	{
+		if (isLeftChild(axis))
+			axis->parent->left = move(axis->left);
+		
+		if (isRightChild(axis))
+			axis->parent->right = move(axis->left);
+		
+	}
+	else
+	{
+		root = //root sie kasuje
+	}*/
+
+	if (axis->left->right != nullptr)
+		axis->left = move(axis->left->right);
+
+	axis->left->right = move(tmp);
+
 }
 
 void BST::makeLinear()
 {
+	Node* currentAxis = root.get();
+	while (currentAxis != nullptr)
+	{
+		if (currentAxis->left != nullptr)
+			rotateRight(currentAxis);
+		else
+			currentAxis = currentAxis->right.get();
+		printData();
+	}
 }
 
 void BST::makeBalanced()
@@ -101,6 +137,17 @@ BST::Node * BST::getNode(Node * startPoint, int value)
 			startPoint = startPoint->right.get();
 	}
 	return startPoint;
+}
+
+unique_ptr<BST::Node>* BST::getUniqueNode(Node * toGet)
+{
+	if (toGet->parent == nullptr)
+		return &root;
+	Node* parent = toGet->parent;
+	if (parent->left.get() == toGet)
+		return &(parent->left);
+	else
+		return &(parent->right);
 }
 
 BST::Node * BST::getMin(Node * searchPoint)
@@ -141,6 +188,24 @@ BST::Node * BST::getSuccessor(Node * searchPoint)
 		parentNode = searchPoint->parent;
 	}
 	return parentNode;
+}
+
+bool BST::isLeftChild(Node * child)
+{
+	if(child->parent == nullptr)
+		return false;
+
+	Node* parent = child->parent;
+	return (parent->left.get() == child);
+}
+
+bool BST::isRightChild(Node * child)
+{
+	if (child->parent == nullptr)
+		return false;
+
+	Node* parent = child->parent;
+	return (parent->right.get() == child);
 }
 
 void BST::removeNode(Node * toDelete)

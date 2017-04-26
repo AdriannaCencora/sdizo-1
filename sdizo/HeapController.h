@@ -9,7 +9,6 @@ public:
 	virtual void init();
 
 protected:
-	virtual void loadFromFile();
 	virtual void deleteFromStructure();
 	virtual void addToStructure();
 	virtual void findInStructure();

@@ -9,7 +9,6 @@ public:
 	virtual void init();
 
 private:
-	virtual void loadFromFile();
 	virtual void deleteFromStructure();
 	virtual void addToStructure();
 	virtual void findInStructure();
