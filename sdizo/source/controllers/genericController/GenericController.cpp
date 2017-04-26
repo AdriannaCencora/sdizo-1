@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "GenericController.h"
 
 using namespace std;
@@ -20,12 +20,19 @@ void GenericController::loadFromFile()
 	int currentData;
 	string line = "";
 
-	cout << "Podaj nazwê pliku: ";
+	cout << "Podaj nazwÃª pliku: ";
 	cin >> userInput;
 	structure->clearStructure();
 
 	ifstream fileStream(userInput);
 
+	if (!fileStream.is_open())
+	{
+		cout << "Plik nie zostal odnaleziony" << endl;
+		system("pause");
+		return;
+	}
+	
 	while (getline(fileStream, line))
 	{
 		if (!line.empty())
@@ -45,7 +52,7 @@ void GenericController::Run()
 	do {
 		system("cls");
 		this->printView();
-		cout << "Podaj opcjê: " << endl;
+		cout << "Podaj opcjÃª: " << endl;
 		cin >> userInput;
 
 		try
@@ -54,7 +61,7 @@ void GenericController::Run()
 		}
 		catch (invalid_argument&)
 		{
-			cout << "Nieprawid³owy argument" << endl;
+			cout << "NieprawidÂ³owy argument" << endl;
 			system("pause");
 		}
 	} while (this->isRunning());

@@ -5,7 +5,7 @@
 class GenericView
 {
     public:
-		virtual ~GenericView() {};
+		virtual ~GenericView() = default;
         virtual void print() = 0;
 };
 

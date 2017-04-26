@@ -104,11 +104,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\jkr\Source\Repos\sdizo\sdizo\stdafx.h;./;.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>.;C:\Users\jkr\Source\Repos\sdizo\sdizo\resource</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -147,6 +152,7 @@
     <Text Include="resource\input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\views\rbTree\rbTreeMenu.h" />
     <ClInclude Include="source\controllers\appController\AppController.h" />
     <ClInclude Include="source\views\app\appMenu.h" />
     <ClInclude Include="source\structures\array\Array.h" />
@@ -171,6 +177,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\views\rbTree\rbTreeMenu.cpp" />
     <ClCompile Include="source\controllers\appController\AppController.cpp" />
     <ClCompile Include="source\views\app\appMenu.cpp" />
     <ClCompile Include="source\structures\array\Array.cpp" />
