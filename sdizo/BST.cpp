@@ -79,6 +79,7 @@ void BST::printData()
 void BST::fixBalance()
 {
 	makeLinear();
+	makeBalanced();
 }
 
 void BST::rotateLeft(Node * axis)
@@ -92,7 +93,7 @@ void BST::rotateLeft(Node * axis)
 	unique_ptr<BST::Node>* axisUniquePtr = getUniqueNode(axis);
 	unique_ptr<BST::Node> axisUnique = move(*axisUniquePtr);
 
-	Node* rightChild = axis->left.get();
+	Node* rightChild = axis->right.get();
 	unique_ptr<BST::Node>* rightChildUniquePtr = getUniqueNode(rightChild);
 	unique_ptr<BST::Node> rightChildUnique = move(*rightChildUniquePtr);
 
@@ -175,12 +176,34 @@ void BST::makeLinear()
 		}
 		else
 			currentAxis = currentAxis->right.get();
-		printData();
 	}
 }
 
 void BST::makeBalanced()
 {
+	unsigned int secondRotationRound = pow(2, floor(log2(size + 1))) - 1;
+	unsigned int firstRotationRound = size - secondRotationRound;
+
+	Node* currAxis = root.get();
+	for (unsigned int i = 0; i < firstRotationRound; ++i)
+	{
+		rotateLeft(currAxis);
+		currAxis = currAxis->parent->right.get();
+		printData();
+		system("pause");
+	}
+
+	while (secondRotationRound > 1)
+	{
+		currAxis = root.get();
+		secondRotationRound = floor(secondRotationRound / 2);
+		for(unsigned int i = 0; i < secondRotationRound; ++i)
+		{
+			rotateLeft(currAxis);
+			currAxis = currAxis->parent->right.get();
+			system("pause");
+		}
+	}
 }
 
 BST::Node * BST::getNode(Node * startPoint, int value)

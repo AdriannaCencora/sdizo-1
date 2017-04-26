@@ -15,5 +15,6 @@
 #include <fstream>
 #include <ctime>
 #include <sstream>
+#include <cmath>
 
 // TODO: reference additional headers your program requires here
