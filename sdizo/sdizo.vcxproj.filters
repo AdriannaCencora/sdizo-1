@@ -92,6 +92,12 @@
     <ClInclude Include="source\views\rbTree\rbTreeMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\structures\rbTree\rbTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\rbTreeController\rbTreeController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo.cpp">
@@ -146,6 +152,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\views\rbTree\rbTreeMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\rbTree\rbTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\rbTreeController\rbTreeController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

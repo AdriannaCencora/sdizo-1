@@ -152,6 +152,8 @@
     <Text Include="resource\input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\structures\rbTree\rbTree.h" />
+    <ClInclude Include="source\controllers\rbTreeController\rbTreeController.h" />
     <ClInclude Include="source\views\rbTree\rbTreeMenu.h" />
     <ClInclude Include="source\controllers\appController\AppController.h" />
     <ClInclude Include="source\views\app\appMenu.h" />
@@ -177,6 +179,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\structures\rbTree\rbTree.cpp" />
+    <ClCompile Include="source\controllers\rbTreeController\rbTreeController.cpp" />
     <ClCompile Include="source\views\rbTree\rbTreeMenu.cpp" />
     <ClCompile Include="source\controllers\appController\AppController.cpp" />
     <ClCompile Include="source\views\app\appMenu.cpp" />
