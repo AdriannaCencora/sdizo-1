@@ -15,132 +15,131 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-    <Text Include="input.txt">
+    <Text Include="resource\bst.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="bst.txt">
+    <Text Include="resource\input.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdizo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\appController\AppController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\arrayController\ArrayController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\bstController\BSTController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\genericController\GenericController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\heapController\HeapController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\listController\ListController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\array\Array.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\bst\BST.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\genericStructure\GenericStructure.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\heap\Heap.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\list\List.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utilities\NotImplementedException.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\app\appMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\array\ArrayMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\bst\BSTMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\genericView\GenericView.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\heap\heapMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\list\listMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdizo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AppController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArrayController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BSTController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GenericController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HeapController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ListController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Array.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BST.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GenericStructure.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Heap.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NotImplementedException.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="appMenu.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArrayMenu.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BSTMenu.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GenericView.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="heapMenu.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="listMenu.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\sdizo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\appController\AppController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\arrayController\ArrayController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\bstController\BSTController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\genericController\GenericController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\heapController\HeapController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\listController\ListController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\array\Array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\bst\BST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\heap\Heap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\list\List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\app\appMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\array\ArrayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\bst\BSTMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\heap\heapMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\list\listMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sdizo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AppController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ArrayController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BSTController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GenericController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HeapController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ListController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Array.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BST.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Heap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="List.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="appMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ArrayMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BSTMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="heapMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="listMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

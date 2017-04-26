@@ -87,11 +87,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>../resource;C:\Users\krzem\Documents\Repa\sdizo\sdizo\resource;./resource;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,51 +143,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="bst.txt" />
-    <Text Include="input.txt" />
-    <Text Include="ReadMe.txt" />
+    <Text Include="resource\bst.txt" />
+    <Text Include="resource\input.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AppController.h" />
-    <ClInclude Include="appMenu.h" />
-    <ClInclude Include="Array.h" />
-    <ClInclude Include="ArrayController.h" />
-    <ClInclude Include="ArrayMenu.h" />
-    <ClInclude Include="BSTController.h" />
-    <ClInclude Include="BSTMenu.h" />
-    <ClInclude Include="BST.h" />
-    <ClInclude Include="GenericController.h" />
-    <ClInclude Include="GenericStructure.h" />
-    <ClInclude Include="GenericView.h" />
-    <ClInclude Include="Heap.h" />
-    <ClInclude Include="HeapController.h" />
-    <ClInclude Include="heapMenu.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="ListController.h" />
-    <ClInclude Include="listMenu.h" />
-    <ClInclude Include="NotImplementedException.h" />
+    <ClInclude Include="source\controllers\appController\AppController.h" />
+    <ClInclude Include="source\views\app\appMenu.h" />
+    <ClInclude Include="source\structures\array\Array.h" />
+    <ClInclude Include="source\controllers\arrayController\ArrayController.h" />
+    <ClInclude Include="source\views\array\ArrayMenu.h" />
+    <ClInclude Include="source\controllers\bstController\BSTController.h" />
+    <ClInclude Include="source\views\bst\BSTMenu.h" />
+    <ClInclude Include="source\structures\bst\BST.h" />
+    <ClInclude Include="source\controllers\genericController\GenericController.h" />
+    <ClInclude Include="source\structures\genericStructure\GenericStructure.h" />
+    <ClInclude Include="source\views\genericView\GenericView.h" />
+    <ClInclude Include="source\structures\heap\Heap.h" />
+    <ClInclude Include="source\controllers\heapController\HeapController.h" />
+    <ClInclude Include="source\views\heap\heapMenu.h" />
+    <ClInclude Include="source\structures\list\List.h" />
+    <ClInclude Include="source\controllers\listController\ListController.h" />
+    <ClInclude Include="source\views\list\listMenu.h" />
+    <ClInclude Include="source\utilities\NotImplementedException.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="sdizo.h" />
+    <ClInclude Include="source\sdizo.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AppController.cpp" />
-    <ClCompile Include="appMenu.cpp" />
-    <ClCompile Include="Array.cpp" />
-    <ClCompile Include="ArrayController.cpp" />
-    <ClCompile Include="ArrayMenu.cpp" />
-    <ClCompile Include="BSTController.cpp" />
-    <ClCompile Include="BSTMenu.cpp" />
-    <ClCompile Include="BST.cpp" />
-    <ClCompile Include="GenericController.cpp" />
-    <ClCompile Include="Heap.cpp" />
-    <ClCompile Include="HeapController.cpp" />
-    <ClCompile Include="heapMenu.cpp" />
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="ListController.cpp" />
-    <ClCompile Include="listMenu.cpp" />
-    <ClCompile Include="sdizo.cpp" />
+    <ClCompile Include="source\controllers\appController\AppController.cpp" />
+    <ClCompile Include="source\views\app\appMenu.cpp" />
+    <ClCompile Include="source\structures\array\Array.cpp" />
+    <ClCompile Include="source\controllers\arrayController\ArrayController.cpp" />
+    <ClCompile Include="source\views\array\ArrayMenu.cpp" />
+    <ClCompile Include="source\controllers\bstController\BSTController.cpp" />
+    <ClCompile Include="source\views\bst\BSTMenu.cpp" />
+    <ClCompile Include="source\structures\bst\BST.cpp" />
+    <ClCompile Include="source\controllers\genericController\GenericController.cpp" />
+    <ClCompile Include="source\structures\heap\Heap.cpp" />
+    <ClCompile Include="source\controllers\heapController\HeapController.cpp" />
+    <ClCompile Include="source\views\heap\heapMenu.cpp" />
+    <ClCompile Include="source\structures\list\List.cpp" />
+    <ClCompile Include="source\controllers\listController\ListController.cpp" />
+    <ClCompile Include="source\views\list\listMenu.cpp" />
+    <ClCompile Include="source\sdizo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
