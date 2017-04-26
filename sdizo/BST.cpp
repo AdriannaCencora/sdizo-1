@@ -85,29 +85,40 @@ void BST::rotateRight(Node * axis)
 	if (axis->left == nullptr)
 		return;
 
-	unique_ptr<BST::Node>* axisUnique = getUniqueNode(axis);
-	unique_ptr<BST::Node> tmp;
-	tmp = move(*axisUnique);
-	/*
+	bool isAxisLeftChild = isLeftChild(axis);
+
+	//Creating hooks
+	unique_ptr<BST::Node>* axisUniquePtr = getUniqueNode(axis);
+	unique_ptr<BST::Node> axisUnique = move(*axisUniquePtr);
+
+	Node* leftChild = axis->left.get();
+	unique_ptr<BST::Node>* leftChildUniquePtr = getUniqueNode(leftChild);
+	unique_ptr<BST::Node> leftChildUnique = move(*leftChildUniquePtr);
+	
+	//Moving childs
+	if (leftChild->right != nullptr) 
+	{
+		axis->left = move(leftChild->right);
+		axis->left->parent = axis;
+	}
+	leftChild->right = move(axisUnique);
+
+	//Resettings parents child pointers
 	if (axis->parent != nullptr)
 	{
-		if (isLeftChild(axis))
-			axis->parent->left = move(axis->left);
-		
-		if (isRightChild(axis))
-			axis->parent->right = move(axis->left);
-		
+		if (isAxisLeftChild)
+			axis->parent->left = move(leftChildUnique);
+		else
+			axis->parent->right = move(leftChildUnique);
 	}
-	else
-	{
-		root = //root sie kasuje
-	}*/
 
-	if (axis->left->right != nullptr)
-		axis->left = move(axis->left->right);
+	//Setting parents
+	leftChild->parent = axis->parent;
+	axis->parent = leftChild;
 
-	axis->left->right = move(tmp);
-
+	//Resetting root to correct place if needed
+	if (leftChild->parent == nullptr)
+		root = move(leftChildUnique);
 }
 
 void BST::makeLinear()
@@ -116,7 +127,10 @@ void BST::makeLinear()
 	while (currentAxis != nullptr)
 	{
 		if (currentAxis->left != nullptr)
+		{
 			rotateRight(currentAxis);
+			currentAxis = currentAxis->parent;
+		}
 		else
 			currentAxis = currentAxis->right.get();
 		printData();
@@ -272,7 +286,7 @@ void BST::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<Nod
 
 		s = s.substr(0, sMiddle.length() - 2);
 
-		cout << s << sBefore << currNode->value << endl;
+		cout << s << sBefore << currNode->value << "[" << ((currNode->parent == nullptr)? -1 : currNode->parent->value) <<"]" << endl;
 
 		s = sMiddle;
 		if (sBefore == (string(1, (char)92)) + string(1, (char)126))
