@@ -7,6 +7,7 @@ void BST::addElement(int value)
 	{
 		root = make_unique<Node>();
 		root->value = value;
+		++size;
 		return;
 	}
 
@@ -21,6 +22,7 @@ void BST::addElement(int value)
 				tmp->left = make_unique<Node>();
 				tmp->left->value = value;
 				tmp->left->parent = tmp;
+				++size;
 				return;
 			}
 			tmp = tmp->left.get();
@@ -32,6 +34,7 @@ void BST::addElement(int value)
 				tmp->right = make_unique<Node>();
 				tmp->right->value = value;
 				tmp->right->parent = tmp;
+				++size;
 				return;
 			}
 			tmp = tmp->right.get();
@@ -43,14 +46,16 @@ void BST::removeElement(int value)
 {
 	Node* toDelete = getNode(root.get(), value);
 	if (toDelete != nullptr)
+	{
 		removeNode(toDelete);
-
-	return;
+		--size;
+	}
 }
 
 void BST::clearStructure()
 {
 	root.reset();
+	size = 0;
 }
 
 bool BST::findValue(int toFind)
@@ -78,6 +83,43 @@ void BST::fixBalance()
 
 void BST::rotateLeft(Node * axis)
 {
+	if (axis->right == nullptr)
+		return;
+
+	bool isAxisLeftChild = isLeftChild(axis);
+
+	//Creating hooks
+	unique_ptr<BST::Node>* axisUniquePtr = getUniqueNode(axis);
+	unique_ptr<BST::Node> axisUnique = move(*axisUniquePtr);
+
+	Node* rightChild = axis->left.get();
+	unique_ptr<BST::Node>* rightChildUniquePtr = getUniqueNode(rightChild);
+	unique_ptr<BST::Node> rightChildUnique = move(*rightChildUniquePtr);
+
+	//Moving childs
+	if (rightChild->left != nullptr)
+	{
+		axis->right = move(rightChild->left);
+		axis->right->parent = axis;
+	}
+	rightChild->left = move(axisUnique);
+
+	//Resettings parents child pointers
+	if (axis->parent != nullptr)
+	{
+		if (isAxisLeftChild)
+			axis->parent->left = move(rightChildUnique);
+		else
+			axis->parent->right = move(rightChildUnique);
+	}
+
+	//Setting parents
+	rightChild->parent = axis->parent;
+	axis->parent = rightChild;
+
+	//Resetting root to correct place if needed
+	if (rightChild->parent == nullptr)
+		root = move(rightChildUnique);
 }
 
 void BST::rotateRight(Node * axis)
@@ -235,6 +277,7 @@ void BST::removeNode(Node * toDelete)
 			parentNode->left.reset();
 		else
 			parentNode->right.reset();
+		--size;
 		return;
 	}
 
@@ -260,6 +303,7 @@ void BST::removeNode(Node * toDelete)
 				parentNode->right = move(toDelete->right);
 			parentNode->right->parent = parentNode;
 		}
+		--size;
 		return;
 	}
 

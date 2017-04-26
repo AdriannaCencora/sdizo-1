@@ -26,6 +26,7 @@ private:
 	};
 	
 	unique_ptr<Node> root = nullptr;
+	unsigned int size = 0;
 
 	void rotateLeft(Node* axis);
 	void rotateRight(Node* axis);
