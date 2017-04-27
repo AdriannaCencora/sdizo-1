@@ -6,6 +6,7 @@
 #include "../listController/ListController.h"
 #include "../heapController/HeapController.h"
 #include "../bstController/BSTController.h"
+#include "../rbTreeController/rbTreeController.h"
 
 using namespace std;
 
@@ -38,6 +39,10 @@ void AppController::parseInput(const std::string &input)
 			break;
 		case 4:
 			controller = std::make_unique<BSTController>();
+			controller->Run();
+			break;
+		case 5:
+			controller = std::make_unique<rbTreeController>();
 			controller->Run();
 			break;
 		default:

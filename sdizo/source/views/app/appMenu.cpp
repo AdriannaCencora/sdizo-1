@@ -11,5 +11,6 @@ void appMenu::print()
 	cout << "2.Lista dwustronna" << endl;
 	cout << "3.Kopiec" << endl;
 	cout << "4.Drzewo BST" << endl;
+	cout << "5.Drzewo czerwono-czarne" << endl;
 	cout << "0.Wyjscie" << endl;
 }
