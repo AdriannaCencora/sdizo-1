@@ -119,6 +119,11 @@ void rbTree::fixColors(Node * startNode)
 		fixColorsRedRoot();
 }
 
+void rbTree::fixColorsRedRoot()
+{
+	root->color = Color::Black;
+}
+
 void rbTree::rotateLeft(Node * axis)
 {
 	if (axis->right == nullptr)
