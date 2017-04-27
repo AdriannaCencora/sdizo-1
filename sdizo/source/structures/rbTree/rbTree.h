@@ -42,6 +42,7 @@ private:
 	unique_ptr<Node>* getUniqueNode(Node* toGet);
 	Node* getMin(Node* searchPoint);
 	Node* getMax(Node* searchPoint);
+	Node* getUncle(Node* child);
 	bool isLeftChild(Node* child);
 	bool isRightChild(Node* child);
 	void removeNode(Node* toDelete);

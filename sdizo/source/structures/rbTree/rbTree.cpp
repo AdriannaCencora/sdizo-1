@@ -23,6 +23,7 @@ void rbTree::addElement(int value)
 				tmp->left = make_unique<Node>();
 				tmp->left->value = value;
 				tmp->left->parent = tmp;
+				tmp->left->color = Color::Red;
 				++size;
 
 				return;
@@ -36,6 +37,7 @@ void rbTree::addElement(int value)
 				tmp->right = make_unique<Node>();
 				tmp->right->value = value;
 				tmp->right->parent = tmp;
+				tmp->right->color = Color::Red;
 				++size;
 				return;
 			}
@@ -122,6 +124,11 @@ void rbTree::fixColors(Node * startNode)
 void rbTree::fixColorsRedRoot()
 {
 	root->color = Color::Black;
+}
+
+void rbTree::fixColorsRedUncle(Node * startNode)
+{
+
 }
 
 void rbTree::rotateLeft(Node * axis)
@@ -241,6 +248,22 @@ rbTree::Node * rbTree::getMax(Node * searchPoint)
 	while (searchPoint->right != nullptr)
 		searchPoint = searchPoint->right.get();
 	return searchPoint;
+}
+
+rbTree::Node * rbTree::getUncle(Node * child)
+{
+	if (child->parent == nullptr)
+		return nullptr;
+	if (child->parent->parent == nullptr)
+		return nullptr;
+	Node* uncle;
+	Node* grandParent = child->parent->parent;
+	if (isLeftChild(child->parent))
+		uncle = grandParent->right.get();
+	else
+		uncle = grandParent->left.get();
+
+	return uncle;
 }
 
 bool rbTree::isLeftChild(Node * child)
