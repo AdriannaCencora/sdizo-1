@@ -29,6 +29,13 @@ private:
 	unique_ptr<Node> root = nullptr;
 	unsigned int size = 0;
 
+	bool checkColor(Node* toCheck);
+	void fixColors(Node* startNode);
+	void fixColorsRedRoot();
+	void fixColorsRedUncle(Node* startNode);
+	void fixColorsBlackUncleRightChild(Node* startNode);
+	void fixColorsBlackUncleLeftChild(Node* startNode);
+
 	void rotateLeft(Node* axis);
 	void rotateRight(Node* axis);
 	Node* getNode(Node* startPoint, int value);
