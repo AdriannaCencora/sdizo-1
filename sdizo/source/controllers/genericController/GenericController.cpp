@@ -3,9 +3,46 @@
 
 using namespace std;
 
-GenericController::GenericController() :
-	running(false)
+void GenericController::parseInput(const std::string & input)
 {
+	int parsedInput = -1;
+	parsedInput = atoi(input.c_str());
+
+	system("cls");
+	switch (parsedInput)
+	{
+	case 0:
+		this->Stop();
+		break;
+	case 1:
+		this->loadFromFile();
+		break;
+	case 2:
+		this->deleteFromStructure();
+		break;
+	case 3:
+		this->addToStructure();
+		break;
+	case 4:
+		this->findInStructure();
+		break;
+	case 5:
+		this->generateStructure();
+		break;
+	case 6:
+		//Structure is displayed no matter what after every action
+		break;
+	case 7:
+		this->testStructure();
+		break;
+	case 8:
+		this->clearStructure();
+		break;
+	default:
+		throw std::invalid_argument("Unknown controller input");
+		break;
+	}
+	system("cls");
 }
 
 void GenericController::printView()
@@ -20,7 +57,7 @@ void GenericController::loadFromFile()
 	int currentData;
 	string line = "";
 
-	cout << "Podaj nazwê pliku: ";
+	cout << "Podaj nazwę pliku: ";
 	cin >> userInput;
 	structure->clearStructure();
 
@@ -28,11 +65,11 @@ void GenericController::loadFromFile()
 
 	if (!fileStream.is_open())
 	{
-		cout << "Plik nie zostal odnaleziony" << endl;
+		cout << "Plik nie został odnaleziony" << endl;
 		system("pause");
 		return;
 	}
-	
+
 	while (getline(fileStream, line))
 	{
 		if (!line.empty())
@@ -44,6 +81,22 @@ void GenericController::loadFromFile()
 	}
 }
 
+void GenericController::deleteFromStructure()
+{
+	int value = 0;
+	cout << "Podaj wartość: ";
+	cin >> value;
+	structure->removeElement(value);
+}
+
+void GenericController::addToStructure()
+{
+	int value = 0;
+	cout << "Podaj wartość: ";
+	cin >> value;
+	structure->addElement(value);
+}
+
 void GenericController::Run()
 {
 	init();
@@ -52,7 +105,7 @@ void GenericController::Run()
 	do {
 		system("cls");
 		this->printView();
-		cout << "Podaj opcjê: " << endl;
+		cout << "Podaj opcję: " << endl;
 		cin >> userInput;
 
 		try
@@ -61,7 +114,7 @@ void GenericController::Run()
 		}
 		catch (invalid_argument&)
 		{
-			cout << "Nieprawid³owy argument" << endl;
+			cout << "Nieprawidłowy argument" << endl;
 			system("pause");
 		}
 	} while (this->isRunning());
@@ -72,8 +125,23 @@ void GenericController::Stop()
 	running = false;
 }
 
-void GenericController::init()
+void GenericController::generateStructure()
 {
+	int min, max, amount;
+	cout << "Podaj minimalną wartość: ";
+	cin >> min;
+	cout << "Podaj maksymalną wartość: ";
+	cin >> max;
+	cout << "Podaj ilość: ";
+	cin >> amount;
+
+	for (int i = 0; i < amount; ++i)
+		structure->addElement(rand() % max + min);
+}
+
+void GenericController::clearStructure()
+{
+	structure->clearStructure();
 }
 
 bool GenericController::isRunning()

@@ -6,54 +6,11 @@
 
 using namespace std;
 
-void ArrayController::parseInput(const std::string &input)
-{
-	int parsedInput = -1;
-	parsedInput = atoi(input.c_str());
-
-	system("cls");
-	switch (parsedInput)
-	{
-		case 0:
-			this->Stop();
-			break;
-		case 1:
-			this->loadFromFile();
-			break;
-		case 2:
-			this->deleteFromStructure();
-			break;
-		case 3:
-			this->addToStructure();
-			break;
-		case 4:
-			this->findInStructure();
-			break;
-		case 5:
-			this->generateStructure();
-			break;
-		case 6:
-			//Structure is displayed no matter what after every action
-			break;
-		case 7:
-			this->testStructure();
-			break;
-		case 8:
-			this->clearStructure();
-			break;
-		default:
-			throw new std::invalid_argument("Unknown controller input");
-			break;
-	}
-	system("cls");
-}
-
 void ArrayController::init()
 {
 	structure = std::make_unique<Array>();
 	menu = std::make_unique<ArrayMenu>();
 }
-
 
 void ArrayController::deleteFromStructure()
 {
@@ -105,25 +62,6 @@ void ArrayController::findInStructure()
 	system("pause");
 }
 
-void ArrayController::generateStructure()
-{
-	int min, max, amount;
-	cout << "Podaj minimaln¹ wartoœæ: ";
-	cin >> min;
-	cout << "Podaj maksymaln¹ wartoœæ: ";
-	cin >> max;
-	cout << "Podaj iloœæ: ";
-	cin >> amount;
-
-	for (int i = 0; i < amount; ++i)
-		structure->pushBack(rand() % max + min);
-}
-
 void ArrayController::testStructure()
 {
-}
-
-void ArrayController::clearStructure()
-{
-	structure->clearStructure();
 }

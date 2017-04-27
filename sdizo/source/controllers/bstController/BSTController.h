@@ -1,8 +1,8 @@
 #pragma once
-#include "../heapController/HeapController.h"
+#include "../genericController/GenericController.h"
 
 class BSTController :
-	public HeapController
+	public GenericController
 {
 public:
 	virtual ~BSTController() = default;

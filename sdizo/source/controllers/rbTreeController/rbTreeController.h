@@ -1,5 +1,5 @@
 #pragma once
-#include "C:\Users\jkr\Source\Repos\sdizo\sdizo\source\controllers\genericController\GenericController.h"
+#include "..\genericController\GenericController.h"
 class rbTreeController :
 	public GenericController
 {
