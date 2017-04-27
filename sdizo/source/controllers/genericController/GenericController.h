@@ -13,7 +13,7 @@ public:
 	virtual void loadFromFile();
 	virtual void deleteFromStructure();
 	virtual void addToStructure();
-	virtual void findInStructure() = 0;
+	virtual void findInStructure();
 	virtual void testStructure() { throw new NotImplementedException; };
 	virtual void generateStructure();
 	virtual void clearStructure();

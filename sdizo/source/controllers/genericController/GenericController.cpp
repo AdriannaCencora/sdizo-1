@@ -97,6 +97,18 @@ void GenericController::addToStructure()
 	structure->addElement(value);
 }
 
+void GenericController::findInStructure()
+{
+	int value = 0;
+	cout << "Podaj wartość: ";
+	cin >> value;
+	if (structure->findValue(value))
+		cout << "Ta wartość została znaleziona w strukturze!\n";
+	else
+		cout << "Ta wartość nie została znaleziona w strukturze!\n";
+	system("pause");
+}
+
 void GenericController::Run()
 {
 	init();
