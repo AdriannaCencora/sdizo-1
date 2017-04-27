@@ -128,6 +128,14 @@ void rbTree::fixColorsRedRoot()
 
 void rbTree::fixColorsRedUncle(Node * startNode)
 {
+	Node* uncle = getUncle(startNode);
+	if (uncle == nullptr)
+		return;
+	Node* grandParent = startNode->parent->parent;
+
+	uncle->color = Color::Black;
+	startNode->parent->color = Color::Black;
+	grandParent->color = Color::Red;
 
 }
 
