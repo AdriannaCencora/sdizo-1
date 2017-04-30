@@ -36,6 +36,9 @@ private:
 	void fixColorsBlackUncleRightChild(Node* startNode);
 	void fixColorsBlackUncleLeftChild(Node* startNode);
 
+	Node* createGuardianNode(Node* parent);
+	void deleteGuardianNode(Node* guardian);
+
 	void rotateLeft(Node* axis);
 	void rotateRight(Node* axis);
 	Node* getNode(Node* startPoint, int value);

@@ -25,7 +25,8 @@ void rbTree::addElement(int value)
 				tmp->left->parent = tmp;
 				tmp->left->color = Color::Red;
 				++size;
-
+				if (!checkColor(tmp->left.get()))
+					fixColors(tmp->left.get());
 				return;
 			}
 			tmp = tmp->left.get();
@@ -39,6 +40,8 @@ void rbTree::addElement(int value)
 				tmp->right->parent = tmp;
 				tmp->right->color = Color::Red;
 				++size;
+				if (!checkColor(tmp->right.get()))
+					fixColors(tmp->right.get());
 				return;
 			}
 			tmp = tmp->right.get();
@@ -101,33 +104,47 @@ void rbTree::fixColors(Node * startNode)
 		{
 			Node* uncle;
 			Node* grandParent = startNode->parent->parent;
+			bool guardianSet = false;
+
 			if (isLeftChild(startNode->parent))
 				uncle = grandParent->right.get();
 			else
 				uncle = grandParent->left.get();
 
-			if (uncle->color == Color::Black)
+			if (uncle == nullptr)
+			{
+				uncle = createGuardianNode(grandParent);
+				guardianSet = true;
+			}
+
+			if (uncle->color == Color::Red)
 				fixColorsRedUncle(startNode);
 			else
-				if (isLeftChild(startNode))
+				if (isLeftChild(startNode->parent))
 					fixColorsBlackUncleLeftChild(startNode);
 				else
 					fixColorsBlackUncleRightChild(startNode);
+
+			if(guardianSet)
+				deleteGuardianNode(uncle);
 		}
 	}
 
 
 	if(root->color == Color::Red)
 		fixColorsRedRoot();
+	
 }
 
 void rbTree::fixColorsRedRoot()
 {
+	cout << "red root correction! " << endl;
 	root->color = Color::Black;
 }
 
 void rbTree::fixColorsRedUncle(Node * startNode)
 {
+	cout << "red uncle correction for " << startNode->value << endl;
 	Node* uncle = getUncle(startNode);
 	if (uncle == nullptr)
 		return;
@@ -136,6 +153,75 @@ void rbTree::fixColorsRedUncle(Node * startNode)
 	uncle->color = Color::Black;
 	startNode->parent->color = Color::Black;
 	grandParent->color = Color::Red;
+
+	fixColors(grandParent);
+}
+
+void rbTree::fixColorsBlackUncleRightChild(Node * startNode)
+{
+	Node* parent = startNode->parent;
+	Node* grandParent = startNode->parent->parent;
+
+	if (isLeftChild(startNode))
+	{
+		rotateRight(parent);
+		startNode = parent;
+		parent = startNode->parent;
+	}
+	rotateLeft(grandParent);
+
+	rbTree::Color tmp = parent->color;
+	parent->color = grandParent->color;
+	grandParent->color = tmp;
+
+	fixColors(parent);
+
+}
+
+void rbTree::fixColorsBlackUncleLeftChild(Node * startNode)
+{
+	Node* parent = startNode->parent;
+	Node* grandParent = startNode->parent->parent;
+	
+	if (isRightChild(startNode))
+	{
+		rotateLeft(parent);
+		startNode = parent;
+		parent = startNode->parent;
+	}
+	rotateRight(grandParent);
+
+	rbTree::Color tmp = parent->color;
+	parent->color = grandParent->color;
+	grandParent->color = tmp;
+
+	fixColors(parent);
+
+}
+
+rbTree::Node * rbTree::createGuardianNode(Node * parent)
+{
+	if (parent->left == nullptr)
+	{
+		parent->left = make_unique<rbTree::Node>();
+		parent->left->parent = parent;
+		parent->left->color = Color::Black;
+		return parent->left.get();
+	}
+	if (parent->right == nullptr)
+	{
+		parent->right = make_unique<rbTree::Node>();
+		parent->right->parent = parent;
+		parent->right->color = Color::Black;
+		return parent->right.get();
+	}
+	return nullptr;
+}
+
+void rbTree::deleteGuardianNode(Node * guardian)
+{
+	unique_ptr<Node>* guardianUnique = getUniqueNode(guardian);
+	guardianUnique->reset();
 
 }
 
