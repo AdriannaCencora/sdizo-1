@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "rbTree.h"
 
+using namespace std;
+
 void rbTree::addElement(int value)
 {
 	if (root == nullptr)
@@ -144,7 +146,6 @@ void rbTree::fixColorsRedRoot()
 
 void rbTree::fixColorsRedUncle(Node * startNode)
 {
-	cout << "red uncle correction for " << startNode->value << endl;
 	Node* uncle = getUncle(startNode);
 	if (uncle == nullptr)
 		return;
@@ -319,7 +320,7 @@ rbTree::Node * rbTree::getNode(Node * startPoint, int value)
 	return startPoint;
 }
 
-unique_ptr<rbTree::Node>* rbTree::getUniqueNode(Node * toGet)
+std::unique_ptr<rbTree::Node>* rbTree::getUniqueNode(Node * toGet)
 {
 	if (toGet->parent == nullptr)
 		return &root;
@@ -360,6 +361,32 @@ rbTree::Node * rbTree::getUncle(Node * child)
 	return uncle;
 }
 
+rbTree::Node * rbTree::getPredecessor(Node * searchPoint)
+{
+	if (searchPoint->left != nullptr)
+		return getMax(searchPoint->left.get());
+	Node* parentNode = searchPoint->parent;
+	while (parentNode != nullptr && parentNode->right.get() != searchPoint)
+	{
+		searchPoint = parentNode;
+		parentNode = searchPoint->parent;
+	}
+	return parentNode;
+}
+
+rbTree::Node * rbTree::getSuccessor(Node * searchPoint)
+{
+	if (searchPoint->right != nullptr)
+		return getMin(searchPoint->right.get());
+	Node* parentNode = searchPoint->parent;
+	while (parentNode != nullptr && parentNode->left.get() != searchPoint)
+	{
+		searchPoint = parentNode;
+		parentNode = searchPoint->parent;
+	}
+	return parentNode;
+}
+
 bool rbTree::isLeftChild(Node * child)
 {
 	if (child->parent == nullptr)
@@ -380,6 +407,63 @@ bool rbTree::isRightChild(Node * child)
 
 void rbTree::removeNode(Node * toDelete)
 {
+	Node* childNode = nullptr;
+	Node* parentNode = nullptr;
+
+	//Root case
+	if (toDelete == root.get())
+	{
+		this->clearStructure();
+		return;
+	}
+
+	//No child case
+	if (toDelete->left == nullptr && toDelete->right == nullptr)
+	{
+		parentNode = toDelete->parent;
+		if (parentNode->left.get() == toDelete)
+			parentNode->left.reset();
+		else
+			parentNode->right.reset();
+		--size;
+		return;
+	}
+
+	//One child case
+	if ((toDelete->left == nullptr) != (toDelete->right == nullptr))
+	{
+		parentNode = toDelete->parent;
+
+		if (parentNode->left.get() == toDelete)
+		{
+			if (toDelete->left != nullptr)
+				parentNode->left = move(toDelete->left);
+			else
+				parentNode->left = move(toDelete->right);
+			parentNode->left->parent = parentNode;
+
+		}
+		else
+		{
+			if (toDelete->left != nullptr)
+				parentNode->right = move(toDelete->left);
+			else
+				parentNode->right = move(toDelete->right);
+			parentNode->right->parent = parentNode;
+		}
+		--size;
+		return;
+	}
+
+	//To child case
+	if (toDelete->left != nullptr && toDelete->right != nullptr)
+	{
+		childNode = getSuccessor(toDelete);
+
+		toDelete->value = childNode->value;
+
+		removeNode(childNode);
+	}
 }
 
 void rbTree::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<Node>& currNode)

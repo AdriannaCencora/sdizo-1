@@ -1,8 +1,11 @@
 #pragma once
-#include "../bst/BST.h"
+
+#include "../genericStructure/GenericStructure.h"
+
+using namespace std;
 
 class rbTree :
-	public BST
+	public GenericStructure
 {
 public:
 	rbTree() = default;
@@ -20,13 +23,13 @@ private:
 
 	struct Node {
 		Node* parent = nullptr;
-		unique_ptr<Node> right = nullptr;
-		unique_ptr<Node> left = nullptr;
+		std::unique_ptr<Node> right = nullptr;
+		std::unique_ptr<Node> left = nullptr;
 		int	  value;
 		Color color;
 	};
 
-	unique_ptr<Node> root = nullptr;
+	std::unique_ptr<Node> root = nullptr;
 	unsigned int size = 0;
 
 	bool checkColor(Node* toCheck);
@@ -41,11 +44,15 @@ private:
 
 	void rotateLeft(Node* axis);
 	void rotateRight(Node* axis);
+
 	Node* getNode(Node* startPoint, int value);
-	unique_ptr<Node>* getUniqueNode(Node* toGet);
+	std::unique_ptr<Node>* getUniqueNode(Node* toGet);
 	Node* getMin(Node* searchPoint);
 	Node* getMax(Node* searchPoint);
 	Node* getUncle(Node* child);
+	Node* getPredecessor(Node* searchPoint);
+	Node* getSuccessor(Node* searchPoint);
+
 	bool isLeftChild(Node* child);
 	bool isRightChild(Node* child);
 	void removeNode(Node* toDelete);
