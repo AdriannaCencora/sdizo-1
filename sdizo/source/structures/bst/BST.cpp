@@ -289,16 +289,17 @@ void BST::removeNode(Node * toDelete)
 	Node* childNode = nullptr;
 	Node* parentNode = nullptr;
 
-	//Root case
-	if (toDelete == root.get())
-	{
-		this->clearStructure();
-		return;
-	}
 
 	//No child case
 	if (toDelete->left == nullptr && toDelete->right == nullptr)
 	{
+		//Root case
+		if (toDelete == root.get())
+		{
+			this->clearStructure();
+			return;
+		}
+
 		parentNode = toDelete->parent;
 		if (parentNode->left.get() == toDelete)
 			parentNode->left.reset();
@@ -338,7 +339,8 @@ void BST::removeNode(Node * toDelete)
 	if (toDelete->left != nullptr && toDelete->right != nullptr)
 	{
 		childNode = getSuccessor(toDelete);
-
+		if (childNode == nullptr)
+			childNode = getPredecessor(toDelete);
 		toDelete->value = childNode->value;
 
 		removeNode(childNode);

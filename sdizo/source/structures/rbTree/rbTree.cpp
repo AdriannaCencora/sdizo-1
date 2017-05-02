@@ -83,6 +83,8 @@ bool rbTree::findValue(int toFind)
 void rbTree::printData()
 {
 	printNode(string(""), string(""), root);
+	isBalanced() ? cout << "Balanced" : cout << "Not Balanced";
+	cout << endl;
 }
 
 bool rbTree::checkColor(Node * toCheck)
@@ -140,7 +142,6 @@ void rbTree::fixColors(Node * startNode)
 
 void rbTree::fixColorsRedRoot()
 {
-	cout << "red root correction! " << endl;
 	root->color = Color::Black;
 }
 
@@ -155,7 +156,8 @@ void rbTree::fixColorsRedUncle(Node * startNode)
 	startNode->parent->color = Color::Black;
 	grandParent->color = Color::Red;
 
-	fixColors(grandParent);
+	if(!checkColor(grandParent))
+		fixColors(grandParent);
 }
 
 void rbTree::fixColorsBlackUncleRightChild(Node * startNode)
@@ -174,9 +176,6 @@ void rbTree::fixColorsBlackUncleRightChild(Node * startNode)
 	rbTree::Color tmp = parent->color;
 	parent->color = grandParent->color;
 	grandParent->color = tmp;
-
-	fixColors(parent);
-
 }
 
 void rbTree::fixColorsBlackUncleLeftChild(Node * startNode)
@@ -195,9 +194,6 @@ void rbTree::fixColorsBlackUncleLeftChild(Node * startNode)
 	rbTree::Color tmp = parent->color;
 	parent->color = grandParent->color;
 	grandParent->color = tmp;
-
-	fixColors(parent);
-
 }
 
 rbTree::Node * rbTree::createGuardianNode(Node * parent)
@@ -308,6 +304,107 @@ void rbTree::rotateRight(Node * axis)
 		root = move(leftChildUnique);
 }
 
+void rbTree::swapColors(Node * x, Node * y)
+{
+	rbTree::Color tmp = x->color;
+	x->color = y->color;
+	y->color = tmp;
+}
+
+void rbTree::doubleBlackFix(Node * doubleBlackNode)
+{
+	if (doubleBlackNode == root.get())
+		return;
+
+	Node* sibling = getSibling(doubleBlackNode);
+
+	if (sibling != nullptr)
+	{
+		Node* siblingInnerChild = getInnerChild(sibling);
+		Node* siblingOutterChild = getOutterChild(sibling);
+
+		if (doubleBlackNode->color == Color::Black && sibling->color == Color::Red)
+		{
+			doubleBlackNode->parent->color = Color::Red;
+			sibling->color = Color::Black;
+			rotateLeft(doubleBlackNode->parent);
+			doubleBlackFix(doubleBlackNode);
+			return;
+		}
+
+		if (sibling->left != nullptr && sibling->right != nullptr)
+		{
+			if (doubleBlackNode->color == Color::Black && sibling->color == Color::Black
+				&& doubleBlackNode->parent->color == Color::Black 
+				&& sibling->left->color == Color::Black
+				&& sibling->right->color == Color::Black)
+			{
+				sibling->color = Color::Red;
+				doubleBlackFix(doubleBlackNode->parent);
+				return;
+			}
+		}
+
+		if (sibling->color == Color::Black && doubleBlackNode->parent->color == Color::Black)
+		{
+			if (isLeftChild(doubleBlackNode))
+			{
+				if (sibling->right != nullptr && sibling->left != nullptr)
+					if (sibling->left->color == Color::Red && sibling->right->color == Color::Black)
+					{
+						sibling->color = Color::Red;
+						rotateRight(sibling);
+						sibling = getSibling(doubleBlackNode);
+						sibling->color = Color::Black;
+						doubleBlackFix(doubleBlackNode);
+						return;
+					}
+			}
+			else
+			{
+				if(sibling->right != nullptr && sibling->left != nullptr)
+					if (sibling->right->color == Color::Red && sibling->left->color == Color::Black)
+					{
+						sibling->color = Color::Red;
+						rotateLeft(sibling);
+						sibling = getSibling(doubleBlackNode);
+						sibling->color = Color::Black;
+						doubleBlackFix(doubleBlackNode);
+						return;
+					}
+			}
+
+			if(siblingOutterChild != nullptr)
+				if (sibling->color == Color::Black && siblingOutterChild->color == Color::Red)
+				{
+					doubleBlackNode->parent->color = Color::Black;
+					siblingOutterChild->color = Color::Black;
+
+					if (isLeftChild(doubleBlackNode))
+						rotateLeft(doubleBlackNode->parent);
+					else
+						rotateRight(doubleBlackNode->parent);
+
+					return;
+				}
+
+
+
+			if (doubleBlackNode->color == Color::Black && doubleBlackNode->parent->color == Color::Red)
+			{
+				doubleBlackNode->parent->color = Color::Black;
+				sibling->color = Color::Red;
+				return;
+			}
+		}
+
+
+
+	
+	}
+
+}
+
 rbTree::Node * rbTree::getNode(Node * startPoint, int value)
 {
 	while (startPoint != nullptr && startPoint->value != value)
@@ -387,6 +484,33 @@ rbTree::Node * rbTree::getSuccessor(Node * searchPoint)
 	return parentNode;
 }
 
+rbTree::Node * rbTree::getSibling(Node * child)
+{
+	if (child->parent == nullptr)
+		return nullptr;
+
+	if (isLeftChild(child))
+		return child->parent->right.get();
+	else
+		return child->parent->left.get();
+}
+
+rbTree::Node * rbTree::getOutterChild(Node * parent)
+{
+	if (isRightChild(parent))
+		return parent->right.get();
+	else
+		return parent->left.get();
+}
+
+rbTree::Node * rbTree::getInnerChild(Node * parent)
+{
+	if (isRightChild(parent))
+		return parent->left.get();
+	else
+		return parent->right.get();
+}
+
 bool rbTree::isLeftChild(Node * child)
 {
 	if (child->parent == nullptr)
@@ -410,16 +534,20 @@ void rbTree::removeNode(Node * toDelete)
 	Node* childNode = nullptr;
 	Node* parentNode = nullptr;
 
-	//Root case
-	if (toDelete == root.get())
-	{
-		this->clearStructure();
-		return;
-	}
 
 	//No child case
 	if (toDelete->left == nullptr && toDelete->right == nullptr)
 	{
+		//Root case
+		if (toDelete == root.get())
+		{
+			this->clearStructure();
+			return;
+		}
+
+		if (toDelete->color != Color::Red)
+			doubleBlackFix(toDelete);
+
 		parentNode = toDelete->parent;
 		if (parentNode->left.get() == toDelete)
 			parentNode->left.reset();
@@ -433,6 +561,22 @@ void rbTree::removeNode(Node * toDelete)
 	if ((toDelete->left == nullptr) != (toDelete->right == nullptr))
 	{
 		parentNode = toDelete->parent;
+		rbTree::Color parentColor = parentNode->color;
+		rbTree::Color childColor = toDelete->color;
+		bool isChildDoubleBlack = false;
+		
+		Node* child;
+		if (toDelete->left != nullptr)
+			child = toDelete->left.get();
+		else
+			child = toDelete->right.get();
+
+		if (toDelete->color == Color::Black && child->color == Color::Red)
+			child->color = Color::Black;
+
+		if (toDelete->color == Color::Black && child->color == Color::Black)
+			isChildDoubleBlack = true;
+			
 
 		if (parentNode->left.get() == toDelete)
 		{
@@ -442,6 +586,7 @@ void rbTree::removeNode(Node * toDelete)
 				parentNode->left = move(toDelete->right);
 			parentNode->left->parent = parentNode;
 
+
 		}
 		else
 		{
@@ -450,15 +595,22 @@ void rbTree::removeNode(Node * toDelete)
 			else
 				parentNode->right = move(toDelete->right);
 			parentNode->right->parent = parentNode;
+
 		}
 		--size;
+
+		if(isChildDoubleBlack)
+			doubleBlackFix(child);
+
 		return;
 	}
 
-	//To child case
+	//Two child case
 	if (toDelete->left != nullptr && toDelete->right != nullptr)
 	{
 		childNode = getSuccessor(toDelete);
+		if (childNode == nullptr)
+			childNode = getPredecessor(toDelete);
 
 		toDelete->value = childNode->value;
 
@@ -488,4 +640,41 @@ void rbTree::printNode(std::string & sMiddle, std::string & sBefore, unique_ptr<
 			s[s.length() - 2] = ' ';
 		printNode(s + (char)124 + " ", (string(1, (char)92)) + string(1, (char)126), currNode->left);
 	}
+}
+
+bool rbTree::isBalanced()
+{
+	int maxh, minh;
+	return isBalancedUtil(root.get(), maxh, minh);
+}
+
+bool rbTree::isBalancedUtil(Node* root, int & maxh, int & minh)
+{
+	// Base case
+	if (root == nullptr)
+	{
+		maxh = minh = 0;
+		return true;
+	}
+
+	int lmxh, lmnh; // To store max and min heights of left subtree
+	int rmxh, rmnh; // To store max and min heights of right subtree
+
+    // Check if left subtree is balanced, also set lmxh and lmnh
+	if (isBalancedUtil(root->left.get(), lmxh, lmnh) == false)
+		return false;
+
+	// Check if right subtree is balanced, also set rmxh and rmnh
+	if (isBalancedUtil(root->right.get(), rmxh, rmnh) == false)
+		return false;
+
+	// Set the max and min heights of this node for the parent call
+	maxh = max(lmxh, rmxh) + 1;
+	minh = min(lmnh, rmnh) + 1;
+
+	// See if this node is balanced
+	if (maxh <= 2 * minh)
+		return true;
+
+	return false;
 }

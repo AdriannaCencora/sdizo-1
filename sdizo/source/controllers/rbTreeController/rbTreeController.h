@@ -8,5 +8,6 @@ public:
 	virtual ~rbTreeController() = default;
 
 	virtual void init();
+	virtual void testStructure();
 };
 

@@ -66,6 +66,7 @@ void GenericController::loadFromFile()
 	if (!fileStream.is_open())
 	{
 		cout << "Plik nie został odnaleziony" << endl;
+		system("dir");
 		system("pause");
 		return;
 	}
@@ -146,6 +147,8 @@ void GenericController::generateStructure()
 	cin >> max;
 	cout << "Podaj ilość: ";
 	cin >> amount;
+
+	structure->clearStructure();
 
 	for (int i = 0; i < amount; ++i)
 		structure->addElement(rand() % max + min);

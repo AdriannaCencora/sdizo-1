@@ -17,6 +17,7 @@ public:
 	virtual bool findValue(int toFind);
 	virtual void printData();
 
+	bool isBalanced();
 private:
 
 	enum Color { Black, Red };
@@ -44,6 +45,8 @@ private:
 
 	void rotateLeft(Node* axis);
 	void rotateRight(Node* axis);
+	void swapColors(Node* x, Node* y);
+	void doubleBlackFix(Node* doubleBlackNode);
 
 	Node* getNode(Node* startPoint, int value);
 	std::unique_ptr<Node>* getUniqueNode(Node* toGet);
@@ -52,10 +55,15 @@ private:
 	Node* getUncle(Node* child);
 	Node* getPredecessor(Node* searchPoint);
 	Node* getSuccessor(Node* searchPoint);
+	Node* getSibling(Node* child);
+	Node* getOutterChild(Node* parent);
+	Node* getInnerChild(Node* parent);
 
 	bool isLeftChild(Node* child);
 	bool isRightChild(Node* child);
 	void removeNode(Node* toDelete);
 	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
+
+	bool isBalancedUtil(Node* root, int &maxh, int &minh);
 };
 
