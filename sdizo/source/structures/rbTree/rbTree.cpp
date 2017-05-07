@@ -16,39 +16,42 @@ void rbTree::addElement(int value)
 
 	Node* tmp = root.get();
 
-	while (true)
-	{
-		if (value < tmp->value)
+	if (!this->findValue(value))
+		while (true)
 		{
-			if (tmp->left == nullptr)
+			if (value < tmp->value)
 			{
-				tmp->left = make_unique<Node>();
-				tmp->left->value = value;
-				tmp->left->parent = tmp;
-				tmp->left->color = Color::Red;
-				++size;
-				if (!checkColor(tmp->left.get()))
-					fixColors(tmp->left.get());
-				return;
+				if (tmp->left == nullptr)
+				{
+					tmp->left = make_unique<Node>();
+					tmp->left->value = value;
+					tmp->left->parent = tmp;
+					tmp->left->color = Color::Red;
+					++size;
+					if (!checkColor(tmp->left.get()))
+						fixColors(tmp->left.get());
+					return;
+				}
+				tmp = tmp->left.get();
 			}
-			tmp = tmp->left.get();
-		}
-		else
-		{
-			if (tmp->right == nullptr)
+			else
 			{
-				tmp->right = make_unique<Node>();
-				tmp->right->value = value;
-				tmp->right->parent = tmp;
-				tmp->right->color = Color::Red;
-				++size;
-				if (!checkColor(tmp->right.get()))
-					fixColors(tmp->right.get());
-				return;
+				if (tmp->right == nullptr)
+				{
+					tmp->right = make_unique<Node>();
+					tmp->right->value = value;
+					tmp->right->parent = tmp;
+					tmp->right->color = Color::Red;
+					++size;
+					if (!checkColor(tmp->right.get()))
+						fixColors(tmp->right.get());
+					return;
+				}
+				tmp = tmp->right.get();
 			}
-			tmp = tmp->right.get();
 		}
-	}
+	else
+		cout << "Taka wartoœæ ju¿ istnieje w strukturze" << endl;
 }
 
 void rbTree::removeElement(int value)
@@ -117,7 +120,7 @@ void rbTree::fixColors(Node * startNode)
 
 			if (uncle == nullptr)
 			{
-				uncle = createGuardianNode(grandParent);
+				uncle = createGuardianNodeSibling(grandParent);
 				guardianSet = true;
 			}
 
@@ -196,7 +199,7 @@ void rbTree::fixColorsBlackUncleLeftChild(Node * startNode)
 	grandParent->color = tmp;
 }
 
-rbTree::Node * rbTree::createGuardianNode(Node * parent)
+rbTree::Node * rbTree::createGuardianNodeSibling(Node * parent)
 {
 	if (parent->left == nullptr)
 	{
@@ -213,6 +216,26 @@ rbTree::Node * rbTree::createGuardianNode(Node * parent)
 		return parent->right.get();
 	}
 	return nullptr;
+}
+
+rbTree::Node * rbTree::createGuardianNode(Node * parent, bool createOnLeft = true)
+{
+	Node * guardian; 
+	
+	if (createOnLeft)
+	{
+		parent->left = make_unique<Node>();
+		guardian = parent->left.get();
+	}
+	else
+	{
+		parent->right = make_unique<Node>();
+		guardian = parent->right.get();
+	}
+	guardian->color = Color::Black;
+	guardian->parent = parent;
+
+	return guardian;
 }
 
 void rbTree::deleteGuardianNode(Node * guardian)
@@ -317,92 +340,75 @@ void rbTree::doubleBlackFix(Node * doubleBlackNode)
 		return;
 
 	Node* sibling = getSibling(doubleBlackNode);
+	Node* parent = doubleBlackNode->parent;
 
 	if (sibling != nullptr)
 	{
-		Node* siblingInnerChild = getInnerChild(sibling);
-		Node* siblingOutterChild = getOutterChild(sibling);
+		Node* outterChild = getOutterChild(sibling);
+		Node* innerChild = getInnerChild(sibling);
 
-		if (doubleBlackNode->color == Color::Black && sibling->color == Color::Red)
+		// Case 2
+		if (isBlack(parent) && isRed(sibling) && isBlack(innerChild) && isBlack(outterChild))
 		{
-			doubleBlackNode->parent->color = Color::Red;
-			sibling->color = Color::Black;
-			rotateLeft(doubleBlackNode->parent);
+			if (isRightChild(sibling))
+				rotateLeft(parent);
+			else
+				rotateRight(parent);
+
+			Color tmp = parent->color;
+			parent->color = sibling->color;
+			sibling->color = tmp;
 			doubleBlackFix(doubleBlackNode);
+			return;
+
+		}
+
+		// Case 3
+		if (isBlack(parent) && isBlack(sibling) && isBlack(outterChild) && isBlack(innerChild))
+		{
+			sibling->color = Color::Red;
+			doubleBlackFix(parent);
 			return;
 		}
 
-		if (sibling->left != nullptr && sibling->right != nullptr)
+		// Case 4
+		if (isBlack(sibling) && isRed(parent) && isBlack(outterChild) && isBlack(innerChild))
 		{
-			if (doubleBlackNode->color == Color::Black && sibling->color == Color::Black
-				&& doubleBlackNode->parent->color == Color::Black 
-				&& sibling->left->color == Color::Black
-				&& sibling->right->color == Color::Black)
-			{
-				sibling->color = Color::Red;
-				doubleBlackFix(doubleBlackNode->parent);
-				return;
-			}
+			parent->color = Color::Black;
+			sibling->color = Color::Red;
+			return;
 		}
 
-		if (sibling->color == Color::Black && doubleBlackNode->parent->color == Color::Black)
+		// Case 5
+		if (isBlack(sibling) && isRed(innerChild))
 		{
-			if (isLeftChild(doubleBlackNode))
-			{
-				if (sibling->right != nullptr && sibling->left != nullptr)
-					if (sibling->left->color == Color::Red && sibling->right->color == Color::Black)
-					{
-						sibling->color = Color::Red;
-						rotateRight(sibling);
-						sibling = getSibling(doubleBlackNode);
-						sibling->color = Color::Black;
-						doubleBlackFix(doubleBlackNode);
-						return;
-					}
-			}
+			if (isRightChild(sibling))
+				rotateRight(sibling);
 			else
-			{
-				if(sibling->right != nullptr && sibling->left != nullptr)
-					if (sibling->right->color == Color::Red && sibling->left->color == Color::Black)
-					{
-						sibling->color = Color::Red;
-						rotateLeft(sibling);
-						sibling = getSibling(doubleBlackNode);
-						sibling->color = Color::Black;
-						doubleBlackFix(doubleBlackNode);
-						return;
-					}
-			}
+				rotateLeft(sibling);
 
-			if(siblingOutterChild != nullptr)
-				if (sibling->color == Color::Black && siblingOutterChild->color == Color::Red)
-				{
-					doubleBlackNode->parent->color = Color::Black;
-					siblingOutterChild->color = Color::Black;
+			innerChild->color = Color::Black;
+			sibling->color = Color::Red;
 
-					if (isLeftChild(doubleBlackNode))
-						rotateLeft(doubleBlackNode->parent);
-					else
-						rotateRight(doubleBlackNode->parent);
+			doubleBlackFix(doubleBlackNode);
+			return;
 
-					return;
-				}
-
-
-
-			if (doubleBlackNode->color == Color::Black && doubleBlackNode->parent->color == Color::Red)
-			{
-				doubleBlackNode->parent->color = Color::Black;
-				sibling->color = Color::Red;
-				return;
-			}
 		}
 
+		// Case 6
+		if (isBlack(sibling) && isRed(outterChild))
+		{
+			if (isRightChild(sibling))
+				rotateLeft(parent);
+			else
+				rotateRight(parent);
 
-
-	
+			sibling->color = parent->color;
+			parent->color = Color::Black;
+			outterChild->color = Color::Black;
+			return;
+		}
 	}
-
 }
 
 rbTree::Node * rbTree::getNode(Node * startPoint, int value)
@@ -529,11 +535,26 @@ bool rbTree::isRightChild(Node * child)
 	return (parent->right.get() == child);
 }
 
+bool rbTree::isBlack(Node * node)
+{
+	if (node != nullptr)
+		return (node->color == Color::Black);
+	else
+		return true;
+}
+
+bool rbTree::isRed(Node * node)
+{
+	if (node != nullptr)
+		return (node->color == Color::Red);
+	else
+		return false;
+}
+
 void rbTree::removeNode(Node * toDelete)
 {
 	Node* childNode = nullptr;
 	Node* parentNode = nullptr;
-
 
 	//No child case
 	if (toDelete->left == nullptr && toDelete->right == nullptr)
@@ -546,7 +567,12 @@ void rbTree::removeNode(Node * toDelete)
 		}
 
 		if (toDelete->color != Color::Red)
-			doubleBlackFix(toDelete);
+		{
+			Node* guardian = createGuardianNode(toDelete);
+			removeNode(toDelete);
+			deleteGuardianNode(guardian);
+			return;
+		}
 
 		parentNode = toDelete->parent;
 		if (parentNode->left.get() == toDelete)
@@ -566,17 +592,24 @@ void rbTree::removeNode(Node * toDelete)
 		bool isChildDoubleBlack = false;
 		
 		Node* child;
+		Node* guardian;
 		if (toDelete->left != nullptr)
 			child = toDelete->left.get();
 		else
 			child = toDelete->right.get();
 
-		if (toDelete->color == Color::Black && child->color == Color::Red)
-			child->color = Color::Black;
-
+		// Black child
 		if (toDelete->color == Color::Black && child->color == Color::Black)
+		{
 			isChildDoubleBlack = true;
-			
+		}
+
+		// Red child
+		if (toDelete->color == Color::Black && child->color == Color::Red)
+		{
+			child->color = Color::Black;
+		}
+
 
 		if (parentNode->left.get() == toDelete)
 		{
@@ -608,9 +641,9 @@ void rbTree::removeNode(Node * toDelete)
 	//Two child case
 	if (toDelete->left != nullptr && toDelete->right != nullptr)
 	{
-		childNode = getSuccessor(toDelete);
+		childNode = getPredecessor(toDelete);
 		if (childNode == nullptr)
-			childNode = getPredecessor(toDelete);
+			childNode = getSuccessor(toDelete);
 
 		toDelete->value = childNode->value;
 

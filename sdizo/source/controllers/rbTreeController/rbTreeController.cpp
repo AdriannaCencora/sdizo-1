@@ -17,18 +17,28 @@ void rbTreeController::testStructure()
 {
 	rbTree* rbt = (rbTree*)structure.get();
 	int added;
+	int deleted;
+	int checkIndex;
 	std::string message;
 	std::vector<int> input;
+	std::vector<int> inputToPrint;
+	std::vector<int> deletedV;
+	int startSize;
 
 	rbt->clearStructure();
 
 	while (rbt->isBalanced()) 
 	{
+		system("cls");
+		// Prepare a tree
 		rbt->clearStructure();
 		input.clear();
-		for (int i = 0; i < 100; ++i)
+		inputToPrint.clear();
+		deletedV.clear();
+
+		for (int i = 0; i < 1000; ++i)
 		{
-			added = rand() % 10000 + 1;
+			added = rand() % 1000000 + 1;
 
 			if (rbt->findValue(added))
 			{
@@ -38,12 +48,34 @@ void rbTreeController::testStructure()
 
 			rbt->addElement(added);
 			input.push_back(added);
+		}
+
+		startSize = input.size();
+		inputToPrint = input;
+
+		for (int i = 0; i < floor(2 * startSize / 3); ++i)
+		{
+			checkIndex = rand() % input.size();
+			deleted = input.at(checkIndex);
+			rbt->removeElement(deleted);
+			input.erase(input.begin() + checkIndex);
+			deletedV.push_back(deleted);
 			if (!rbt->isBalanced())
 				break;
 		}
+		
 	}
 
-	for (int i : input)
+	cout << "Input\n";
+	for (int i : inputToPrint)
+		message.append(std::to_string(i) + " ");
+	message.append("\n");
+	cout << message;
+
+	message.clear();
+
+	cout << "delete order\n";
+	for (int i : deletedV)
 		message.append(std::to_string(i) + " ");
 	message.append("\n");
 	cout << message;

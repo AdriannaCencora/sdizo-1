@@ -40,7 +40,8 @@ private:
 	void fixColorsBlackUncleRightChild(Node* startNode);
 	void fixColorsBlackUncleLeftChild(Node* startNode);
 
-	Node* createGuardianNode(Node* parent);
+	Node* createGuardianNodeSibling(Node* parent);
+	Node* createGuardianNode(Node * parent, bool createOnLeft);
 	void deleteGuardianNode(Node* guardian);
 
 	void rotateLeft(Node* axis);
@@ -61,9 +62,14 @@ private:
 
 	bool isLeftChild(Node* child);
 	bool isRightChild(Node* child);
+	bool isBlack(Node* node);
+	bool isRed(Node* node);
 	void removeNode(Node* toDelete);
 	void printNode(std::string &sMiddle, std::string &sBefore, unique_ptr<Node> &currNode);
 
 	bool isBalancedUtil(Node* root, int &maxh, int &minh);
+
+
+
 };
 
