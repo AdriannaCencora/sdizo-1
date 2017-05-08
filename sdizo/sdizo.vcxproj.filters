@@ -101,6 +101,9 @@
     <ClInclude Include="source\controllers\rbTreeController\rbTreeController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo.cpp">
@@ -163,14 +166,13 @@
     <ClCompile Include="source\controllers\rbTreeController\rbTreeController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sdizo.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

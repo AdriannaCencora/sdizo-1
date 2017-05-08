@@ -166,6 +166,7 @@
     <Text Include="resource\input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h" />
     <ClInclude Include="source\structures\rbTree\rbTree.h" />
     <ClInclude Include="source\controllers\rbTreeController\rbTreeController.h" />
     <ClInclude Include="source\views\rbTree\rbTreeMenu.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp" />
     <ClCompile Include="source\structures\rbTree\rbTree.cpp" />
     <ClCompile Include="source\controllers\rbTreeController\rbTreeController.cpp" />
     <ClCompile Include="source\views\rbTree\rbTreeMenu.cpp" />
@@ -221,10 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sdizo.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
