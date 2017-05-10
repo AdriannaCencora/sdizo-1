@@ -104,6 +104,12 @@
     <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\controllers\testControllers\structureTestController\structureTestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\testControllers\treeTestController\treeTestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo.cpp">
@@ -167,6 +173,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\testControllers\structureTestController\structureTestController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\testControllers\treeTestController\treeTestController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
