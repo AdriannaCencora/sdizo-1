@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "source\controllers\testControllers\treeTestController\treeTestController.h"
 #include "source\structures\array\Array.h"
+#include "source\structures\bst\BST.h"
 
 using namespace std;
 
@@ -25,7 +26,10 @@ void treeTestController::insertionTests()
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
 
+	BST* bstTreePtr = nullptr;
+	bstTreePtr = dynamic_cast<BST*>(m_structure);
 	int totalTime = 0;
+
 
 	saveToFile("Insertion");
 
@@ -45,6 +49,10 @@ void treeTestController::insertionTests()
 		}
 		saveToFile(testCase, totalTime);
 		totalTime = 0;
+
+		if (bstTreePtr != nullptr)
+			bstTreePtr->fixBalance();
+
 		m_structure->clearStructure();
 	}
 
@@ -56,6 +64,7 @@ void treeTestController::deletionTests()
 {
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
+
 
 	int totalTime = 0;
 
@@ -82,6 +91,8 @@ void treeTestController::deletionTests()
 		}
 		saveToFile(testCase, totalTime);
 		totalTime = 0;
+
+
 		m_structure->clearStructure();
 	}
 
@@ -94,6 +105,8 @@ void treeTestController::findTests()
 	chrono::high_resolution_clock::time_point endTime;
 
 	int totalTime = 0;
+	BST* bstTreePtr = nullptr;
+	bstTreePtr = dynamic_cast<BST*>(m_structure);
 
 	saveToFile("Find at beginning");
 
@@ -118,6 +131,9 @@ void treeTestController::findTests()
 		}
 		saveToFile(testCase, totalTime);
 		totalTime = 0;
+
+		if (bstTreePtr != nullptr)
+			bstTreePtr->fixBalance();
 		m_structure->clearStructure();
 	}
 	cout << "Zakoñczono test: wyszukiwanie w drzewie" << endl;

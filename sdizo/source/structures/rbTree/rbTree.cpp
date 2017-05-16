@@ -86,7 +86,6 @@ bool rbTree::findValue(int toFind)
 void rbTree::printData()
 {
 	printNode(string(""), string(""), root);
-	isBalanced() ? cout << "Balanced" : cout << "Not Balanced";
 	cout << endl;
 }
 

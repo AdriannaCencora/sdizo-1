@@ -66,10 +66,12 @@ void GenericController::loadFromFile()
 	if (!fileStream.is_open())
 	{
 		cout << "Plik nie został odnaleziony" << endl;
-		system("dir");
 		system("pause");
 		return;
 	}
+
+	// Missing size number
+	getline(fileStream, line);
 
 	while (getline(fileStream, line))
 	{
@@ -86,8 +88,15 @@ void GenericController::deleteFromStructure()
 {
 	int value = 0;
 	cout << "Podaj wartość: ";
-	cin >> value;
-	structure->removeElement(value);
+	cin >> value;	
+	try {
+		structure->removeElement(value);
+	}
+	catch (exception &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
 }
 
 void GenericController::addToStructure()
@@ -95,7 +104,14 @@ void GenericController::addToStructure()
 	int value = 0;
 	cout << "Podaj wartość: ";
 	cin >> value;
-	structure->addElement(value);
+	try {
+		structure->addElement(value);
+	}
+	catch (exception &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
 }
 
 void GenericController::findInStructure()

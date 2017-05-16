@@ -13,36 +13,33 @@ void BST::addElement(int value)
 
 	Node* tmp = root.get();
 
-	if(!findValue(value))
-		while (true)
+	while (true)
+	{
+		if (value < tmp->value)
 		{
-			if (value < tmp->value)
+			if (tmp->left == nullptr)
 			{
-				if (tmp->left == nullptr)
-				{
-					tmp->left = make_unique<Node>();
-					tmp->left->value = value;
-					tmp->left->parent = tmp;
-					++size;
-					return;
-				}
-				tmp = tmp->left.get();
+				tmp->left = make_unique<Node>();
+				tmp->left->value = value;
+				tmp->left->parent = tmp;
+				++size;
+				return;
 			}
-			else
-			{
-				if (tmp->right == nullptr)
-				{
-					tmp->right = make_unique<Node>();
-					tmp->right->value = value;
-					tmp->right->parent = tmp;
-					++size;
-					return;
-				}
-				tmp = tmp->right.get();
-			}
+			tmp = tmp->left.get();
 		}
-	else
-		cout << "Taka wartoœæ ju¿ istnieje w strukturze" << endl;
+		else
+		{
+			if (tmp->right == nullptr)
+			{
+				tmp->right = make_unique<Node>();
+				tmp->right->value = value;
+				tmp->right->parent = tmp;
+				++size;
+				return;
+			}
+			tmp = tmp->right.get();
+		}
+	}
 }
 
 void BST::removeElement(int value)
@@ -81,8 +78,11 @@ void BST::printData()
 
 void BST::fixBalance()
 {
-	makeLinear();
-	makeBalanced();
+	if (root != nullptr)
+	{
+		makeLinear();
+		makeBalanced();
+	}
 }
 
 int BST::getSize()
