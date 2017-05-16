@@ -64,7 +64,7 @@ void structureTestController::insertAtBeginning()
 		for (int i = 0; i < testCase * 1000; ++i) {
 			startTime = chrono::high_resolution_clock::now();
 		
-			m_structure->addElement(0);
+			m_structure->addElement(0, i);
 
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();

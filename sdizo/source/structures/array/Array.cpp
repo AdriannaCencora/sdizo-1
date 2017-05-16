@@ -156,7 +156,7 @@ int Array::operator[](int index)
 
 void Array::moveElementsRight(int index)
 {
-	for (int i = currSize - 1; i > index; --i)
+	for (int i = allocatedSize - 1; i > index; --i)
 		data[i] = data[i - 1];
 }
 
