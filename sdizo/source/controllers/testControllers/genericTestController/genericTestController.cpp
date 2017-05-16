@@ -5,6 +5,7 @@ using namespace std;
 
 void genericTestController::runAllTests()
 {
+	m_structure->clearStructure();
 	insertionTests();
 	deletionTests();
 	findTests();

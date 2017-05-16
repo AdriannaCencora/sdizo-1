@@ -40,7 +40,11 @@ void Array::addElement(int index, int value)
 		moveElementsRight(index);
 	}
 	else
-		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
+	{
+		std::stringstream ss;
+		ss << "Indeks poza zasiêgiem tablicy( podano: " << index << " max: " << getSize();
+		throw std::invalid_argument(ss.str());
+	}
 	
 	data[index] = value;
 	++currSize;
@@ -55,7 +59,8 @@ void Array::pushBack(int value)
 {
 	if (currSize + 1 > allocatedSize)
 		realocate(allocatedSize + 1);
-	data[currSize++] = value;
+	currSize++;
+	data[currSize - 1] = value;
 }
 
 void Array::removeElement(int index)
@@ -66,7 +71,11 @@ void Array::removeElement(int index)
 		realocate(allocatedSize - 1);
 	}
 	else
-		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
+	{
+		std::stringstream ss;
+		ss << "Indeks poza zasiêgiem tablicy( podano: " << index << " max: " << getSize();
+		throw std::invalid_argument(ss.str());
+	}
 
 }
 

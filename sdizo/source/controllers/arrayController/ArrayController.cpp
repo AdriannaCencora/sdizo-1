@@ -65,8 +65,8 @@ void ArrayController::findInStructure()
 
 void ArrayController::testStructure()
 {
-	structureTestController tester(structure.get(), "Tablica");
+	Array arr;
+	structureTestController tester(&arr, "Tablica");
 
 	tester.runAllTests();
-
 }

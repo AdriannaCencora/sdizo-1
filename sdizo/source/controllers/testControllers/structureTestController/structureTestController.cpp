@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "structureTestController.h"
 #include "source\structures\array\Array.h"
+#include "source\structures\list\List.h"
 
 using namespace std;
 
@@ -145,6 +146,11 @@ void structureTestController::deleteAtBeginning()
 
 	int totalTime = 0;
 
+	Array* arr = dynamic_cast<Array*>(m_structure);
+	List* list = dynamic_cast<List*>(m_structure);
+
+	
+
 	saveToFile("Delete at beginning");
 
 	cout << "Test: usuwanie na pocz¹tku" << endl;
@@ -161,7 +167,12 @@ void structureTestController::deleteAtBeginning()
 		{
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->removeElement(i);
+			if (arr != nullptr)
+				arr->removeElement(0);
+			else if (list != nullptr)
+				list->removeElement(i);
+			else
+				m_structure->removeElement(i);
 
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
@@ -200,7 +211,7 @@ void structureTestController::deleteAtEnd()
 		{
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->removeElement(i);
+			m_structure->removeElement(m_structure->getSize() - 1);
 
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
@@ -223,6 +234,8 @@ void structureTestController::deleteAtRandom()
 	int deletedIndex;
 	Array arr;
 
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
+
 	saveToFile("Delete at end");
 
 	cout << "Test: usuwanie losowe" << endl;
@@ -232,23 +245,40 @@ void structureTestController::deleteAtRandom()
 		cout << "n = " << testCase * 1000 << endl;
 
 		for (int i = 0; i < testCase * 1000; ++i)
-			arr.pushBack(i);
+			m_structure->addElement(i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
-			m_structure->addElement(0, i);
+		if (byValue) 
+			for (int i = 0; i < testCase * 1000; ++i)
+				arr.addElement(i);
 
 		for (int i = 0; i < testCase * 1000; ++i)
 		{
-			deletedIndex = rand() % m_structure->getSize();
+			if (byValue)
+				deletedIndex = rand() % arr.getSize();
+			
 			startTime = chrono::high_resolution_clock::now();
 
-			
-			m_structure->removeElement(arr.getValue(deletedIndex));
+			try
+			{
+				if (byValue)
+					m_structure->removeElement(arr.getValue(deletedIndex));
+				else
+					m_structure->removeElement(rand() % m_structure->getSize());
+			}
+			catch (invalid_argument &e)
+			{
+				cout << e.what() << endl;
+				cout << "tried to delete: " << (deletedIndex) << endl;
+				system("pause");
+				return;
+			}
 
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
 
-			arr.removeElement(deletedIndex);
+			if(byValue)
+				arr.removeElement(deletedIndex);
+
 		}
 		saveToFile(testCase, totalTime);
 		totalTime = 0;

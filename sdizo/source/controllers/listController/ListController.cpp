@@ -51,7 +51,15 @@ void ListController::addAtEnd()
 	int value = 0;
 	cout << "Podaj wartoœæ: ";
 	cin >> value;
-	structure->pushBack(value);
+	try
+	{
+		structure->pushBack(value);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
 }
 
 void ListController::addAtBeginning()
@@ -59,7 +67,15 @@ void ListController::addAtBeginning()
 	int value = 0;
 	cout << "Podaj wartoœæ: ";
 	cin >> value;
-	structure->pushFront(value);
+	try
+	{
+		structure->pushFront(value);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
 }
 
 void ListController::findInStructure()
@@ -76,7 +92,8 @@ void ListController::findInStructure()
 
 void ListController::testStructure()
 {
-	structureTestController tester(structure.get(), "Lista");
+	List l;
+	structureTestController tester(&l , "Lista");
 
 	tester.runAllTests();
 }
