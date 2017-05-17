@@ -13,36 +13,35 @@ void BST::addElement(int value)
 
 	Node* tmp = root.get();
 
-	if(!findValue(value))
-		while (true)
+	while (true)
+	{
+		if (value < tmp->value)
 		{
-			if (value < tmp->value)
+			if (tmp->left == nullptr)
 			{
-				if (tmp->left == nullptr)
-				{
-					tmp->left = make_unique<Node>();
-					tmp->left->value = value;
-					tmp->left->parent = tmp;
-					++size;
-					return;
-				}
-				tmp = tmp->left.get();
+				tmp->left = make_unique<Node>();
+				tmp->left->value = value;
+				tmp->left->parent = tmp;
+				++size;
+				fixBalance();
+				return;
 			}
-			else
-			{
-				if (tmp->right == nullptr)
-				{
-					tmp->right = make_unique<Node>();
-					tmp->right->value = value;
-					tmp->right->parent = tmp;
-					++size;
-					return;
-				}
-				tmp = tmp->right.get();
-			}
+			tmp = tmp->left.get();
 		}
-	else
-		cout << "Taka wartoœæ ju¿ istnieje w strukturze" << endl;
+		else
+		{
+			if (tmp->right == nullptr)
+			{
+				tmp->right = make_unique<Node>();
+				tmp->right->value = value;
+				tmp->right->parent = tmp;
+				++size;
+				fixBalance();
+				return;
+			}
+			tmp = tmp->right.get();
+		}
+	}
 }
 
 void BST::removeElement(int value)
@@ -52,6 +51,7 @@ void BST::removeElement(int value)
 	{
 		removeNode(toDelete);
 		--size;
+		fixBalance();
 	}
 }
 
@@ -81,8 +81,11 @@ void BST::printData()
 
 void BST::fixBalance()
 {
-	makeLinear();
-	makeBalanced();
+	if (root != nullptr)
+	{
+		makeLinear();
+		makeBalanced();
+	}
 }
 
 int BST::getSize()
@@ -313,12 +316,11 @@ void BST::removeNode(Node * toDelete)
 			parentNode->left.reset();
 		else
 			parentNode->right.reset();
-		--size;
 		return;
 	}
 
 	//One child case
-	if ((toDelete->left == nullptr) != (toDelete->right == nullptr))
+	if ((toDelete->left == nullptr) != (toDelete->right == nullptr) && toDelete->parent != nullptr)
 	{
 		parentNode = toDelete->parent;
 
@@ -339,12 +341,11 @@ void BST::removeNode(Node * toDelete)
 				parentNode->right = move(toDelete->right);
 			parentNode->right->parent = parentNode;
 		}
-		--size;
 		return;
 	}
 
 	//To child case
-	if (toDelete->left != nullptr && toDelete->right != nullptr)
+	if (toDelete->left != nullptr && toDelete->right != nullptr || toDelete->parent == nullptr)
 	{
 		childNode = getSuccessor(toDelete);
 		if (childNode == nullptr)

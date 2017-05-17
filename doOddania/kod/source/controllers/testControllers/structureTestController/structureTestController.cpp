@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "structureTestController.h"
 #include "source\structures\array\Array.h"
+#include "source\structures\list\List.h"
 
 using namespace std;
 
@@ -8,7 +9,7 @@ structureTestController::structureTestController(GenericStructure * structure, s
 {
 	m_structure = structure;
 	filename = structureName;
-	filename.append(".scv");
+	filename.append(".csv");
 
 	// Clearing the file
 	std::ofstream ofs;
@@ -52,23 +53,36 @@ void structureTestController::insertAtBeginning()
 
 	int totalTime = 0;
 
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
+
 	saveToFile("Insert at beginning");
 
 	cout << "Test: wstawianie na pocz¹tku" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
-		for (int i = 0; i < testCase * 1000; ++i) {
+		for (int i = 0; i < testCase * 1000; ++i)
+			m_structure->addElement(0, i);
+
+		for (int i = 0; i < 1000; ++i) 
+		{
 			startTime = chrono::high_resolution_clock::now();
 		
-			m_structure->addElement(0);
+			m_structure->addElement(0, i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			if (byValue)
+				m_structure->removeElement(i);
+			else
+				m_structure->removeElement(0);
+			
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -82,24 +96,32 @@ void structureTestController::insertAtEnd()
 	chrono::high_resolution_clock::time_point endTime;
 
 	int totalTime = 0;
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
 
 	saveToFile("Insert at end");
 
 	cout << "Test: wstawianie na koñcu" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
-		for (int i = 0; i < testCase * 1000; ++i) {
+		for (int i = 0; i < testCase * 1000; ++i)
+			m_structure->addElement(0, i);
+
+		for (int i = 0; i < 1000; ++i) {
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->addElement((m_structure->getSize() - 1 <0)? 0 : m_structure->getSize() - 1);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			
+			m_structure->removeElement((m_structure->getSize() - 1 < 0) ? 0 : m_structure->getSize() - 1);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 
@@ -114,24 +136,35 @@ void structureTestController::insertAtRandom()
 	chrono::high_resolution_clock::time_point endTime;
 
 	int totalTime = 0;
-
+	
 	saveToFile("Insert at random");
 
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
 	cout << "Test: wstawianie losowe" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
-		for (int i = 0; i < testCase * 1000; ++i) {
+		for (int i = 0; i < testCase * 1000; ++i)
+			m_structure->addElement(0, i);
+
+		for (int i = 0; i < 1000; ++i) {
+
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->addElement((m_structure->getSize() == 0)? 0 : rand() % m_structure->getSize());
+			m_structure->addElement(rand() % m_structure->getSize(), i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			if (byValue)
+				m_structure->removeElement(i);
+			else
+				m_structure->removeElement(0);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -145,11 +178,16 @@ void structureTestController::deleteAtBeginning()
 
 	int totalTime = 0;
 
+	Array* arr = dynamic_cast<Array*>(m_structure);
+	List* list = dynamic_cast<List*>(m_structure);
+
+	
+
 	saveToFile("Delete at beginning");
 
 	cout << "Test: usuwanie na pocz¹tku" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 
 		cout << "n = " << testCase * 1000 << endl;
@@ -157,16 +195,25 @@ void structureTestController::deleteAtBeginning()
 		for (int i = testCase * 1000 - 1; i >= 0; --i)
 			m_structure->addElement(0, i);
 
-		for (int i = 0; i < testCase * 1000; ++i) 
+		for (int i = 0; i <  1000; ++i) 
 		{
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->removeElement(i);
+			if (arr != nullptr)
+				arr->removeElement(0);
+			else if (list != nullptr)
+				list->removeElement(i);
+			else
+				m_structure->removeElement(i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			m_structure->addElement(i);
+
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -188,7 +235,7 @@ void structureTestController::deleteAtEnd()
 
 	cout << "Test: usuwanie na koñcu" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 
 		cout << "n = " << testCase * 1000 << endl;
@@ -196,16 +243,19 @@ void structureTestController::deleteAtEnd()
 		for (int i = 0; i < testCase * 1000; ++i)
 			m_structure->addElement(0, i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->removeElement(i);
+			m_structure->removeElement(m_structure->getSize() - 1);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			m_structure->addElement(i);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -223,34 +273,56 @@ void structureTestController::deleteAtRandom()
 	int deletedIndex;
 	Array arr;
 
-	saveToFile("Delete at end");
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
+
+	saveToFile("Delete at random");
 
 	cout << "Test: usuwanie losowe" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
 		for (int i = 0; i < testCase * 1000; ++i)
-			arr.pushBack(i);
+			m_structure->addElement(i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
-			m_structure->addElement(0, i);
+		if (byValue) 
+			for (int i = 0; i < testCase * 1000; ++i)
+				arr.addElement(i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
-			deletedIndex = rand() % m_structure->getSize();
+			if (byValue)
+				deletedIndex = rand() % arr.getSize();
+			
 			startTime = chrono::high_resolution_clock::now();
 
-			
-			m_structure->removeElement(arr.getValue(deletedIndex));
+			try
+			{
+				if (byValue)
+					m_structure->removeElement(arr.getValue(deletedIndex));
+				else
+					m_structure->removeElement(rand() % m_structure->getSize());
+			}
+			catch (invalid_argument &e)
+			{
+				cout << e.what() << endl;
+				cout << "tried to delete: " << (deletedIndex) << endl;
+				system("pause");
+				return;
+			}
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
 
-			arr.removeElement(deletedIndex);
+			m_structure->addElement(i);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
+
+			if(byValue)
+				arr.removeElement(deletedIndex);
+
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -270,24 +342,24 @@ void structureTestController::findAtBeginning()
 
 	cout << "Test: wyszukiwanie na pocz¹tku" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
 		for (int i = 0; i < testCase * 1000; ++i)
 			m_structure->addElement(0, i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->findValue(testCase * 1000 - rand() % 30);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -307,24 +379,24 @@ void structureTestController::findAtEnd()
 
 	cout << "Test: wyszukiwanie na koñcu" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
 		for (int i = 0; i < testCase * 1000; ++i)
 			m_structure->addElement(0, i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->findValue(0 + rand() % 30);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}
@@ -340,28 +412,28 @@ void structureTestController::findAtRandom()
 
 	int totalTime = 0;
 
-	saveToFile("Find at end");
+	saveToFile("Find at random");
 
 	cout << "Test: wyszukiwanie losowe" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
 		for (int i = 0; i < testCase * 1000; ++i)
 			m_structure->addElement(0, i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->findValue(rand() % m_structure->getSize());
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 		m_structure->clearStructure();
 	}

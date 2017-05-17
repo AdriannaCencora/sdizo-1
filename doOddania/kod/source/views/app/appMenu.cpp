@@ -12,5 +12,6 @@ void appMenu::print()
 	cout << "3.Kopiec" << endl;
 	cout << "4.Drzewo BST" << endl;
 	cout << "5.Drzewo czerwono-czarne" << endl;
+	cout << "6.PrzeprowadŸ pomiary dla wszystkich struktur" << endl;
 	cout << "0.Wyjscie" << endl;
 }

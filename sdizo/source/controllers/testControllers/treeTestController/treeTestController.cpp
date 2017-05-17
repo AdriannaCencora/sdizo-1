@@ -37,15 +37,23 @@ void treeTestController::insertionTests()
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
-		for (int i = 0; i < testCase * 1000; ++i) {
+		for (int i = 0; i < testCase * 1000; ++i)
+			m_structure->addElement(i);
+
+
+		for (int i = testCase * 1000; i < testCase * 1000 + 1000; ++i) 
+		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->addElement(i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			m_structure->removeElement(i);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase * 1000, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 
 		m_structure->clearStructure();
@@ -75,16 +83,19 @@ void treeTestController::deletionTests()
 		for (int i = testCase * 1000 - 1; i >= 0; --i)
 			m_structure->addElement(i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = testCase * 1000; i < testCase * 1000 + 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->removeElement(i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+
+			m_structure->addElement(i);
+
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase * 1000, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 
 
@@ -112,17 +123,17 @@ void treeTestController::findTests()
 		for (int i = 0; i < testCase * 1000; ++i)
 			m_structure->addElement(i);
 
-		for (int i = 0; i < testCase * 1000; ++i)
+		for (int i = 0; i < 1000; ++i)
 		{
 			startTime = chrono::high_resolution_clock::now();
 
 			m_structure->findValue(i);
 
 			endTime = chrono::high_resolution_clock::now();
-			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+			totalTime += (int)std::chrono::duration_cast<chrono::nanoseconds>(endTime - startTime).count();
 
 		}
-		saveToFile(testCase * 1000, totalTime);
+		saveToFile(testCase * 1000, totalTime/1000);
 		totalTime = 0;
 
 		m_structure->clearStructure();

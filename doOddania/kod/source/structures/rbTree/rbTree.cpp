@@ -86,7 +86,6 @@ bool rbTree::findValue(int toFind)
 void rbTree::printData()
 {
 	printNode(string(""), string(""), root);
-	isBalanced() ? cout << "Balanced" : cout << "Not Balanced";
 	cout << endl;
 }
 
@@ -584,7 +583,6 @@ void rbTree::removeNode(Node * toDelete)
 			parentNode->left.reset();
 		else
 			parentNode->right.reset();
-		--size;
 		return;
 	}
 
@@ -635,7 +633,6 @@ void rbTree::removeNode(Node * toDelete)
 			parentNode->right->parent = parentNode;
 
 		}
-		--size;
 
 		if(isChildDoubleBlack)
 			doubleBlackFix(child);

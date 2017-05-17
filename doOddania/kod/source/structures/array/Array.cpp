@@ -4,11 +4,10 @@
 #include "../../views/array/ArrayMenu.h"
 
 Array::Array() :
-	data(std::make_unique<int[]>(1))
-	, allocatedSize(1)
-{
-	isCheap = true;
-}
+	isCheap(true)
+	, allocatedSize(0)
+	, currSize(0)
+{}
 
 Array::Array(int size) :
 	data(std::make_unique<int[]>(size))
@@ -29,10 +28,22 @@ void Array::printData()
 
 void Array::addElement(int index, int value)
 {
-	if (index > currSize - 1 && index != 0)
-		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
-	if (index != allocatedSize - currSize)
+	if (isEmpty() && index == 0)
+	{
+		data = std::make_unique<int[]>(1);
+		allocatedSize = 1;
+	}
+	else if (index >= 0 && index < currSize)
+	{
+		if (allocatedSize < currSize + 1)
+			this->realocate(allocatedSize + 1);
 		moveElementsRight(index);
+	}
+	else
+	{
+		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
+	}
+	
 	data[index] = value;
 	++currSize;
 }
@@ -46,29 +57,42 @@ void Array::pushBack(int value)
 {
 	if (currSize + 1 > allocatedSize)
 		realocate(allocatedSize + 1);
-	data[currSize++] = value;
+	currSize++;
+	data[currSize - 1] = value;
 }
 
 void Array::removeElement(int index)
 {
-	moveElementsLeft(index);
-	if (isCheap)
+	if (index >= 0 && index < getSize())
+	{
+		moveElementsLeft(index);
 		realocate(allocatedSize - 1);
+	}
 	else
-		--currSize;
+	{
+		std::stringstream ss;
+		ss << "Indeks poza zasiêgiem tablicy( podano: " << index << " max: " << getSize();
+		throw std::invalid_argument(ss.str());
+	}
+
 }
+
 void Array::clearStructure()
 {
 	data.reset();
-	data = std::make_unique<int[]>(1);
 	currSize = 0;
-	allocatedSize = 1;
+	allocatedSize = 0;
 }
 
 void Array::realocate(int newSize)
 {
-	if (newSize < 1)
-		newSize = 1;
+	if (newSize == 0)
+	{
+		data.reset();
+		currSize = 0;
+		allocatedSize = 0;
+	}
+
 	std::unique_ptr<int[]> newData = std::make_unique<int[]>(newSize);
 	int moveDataToIndex = (newSize > currSize) ? currSize : newSize;
 	for (int index = 0; index < moveDataToIndex; index++)
@@ -130,9 +154,7 @@ int Array::operator[](int index)
 
 void Array::moveElementsRight(int index)
 {
-	if (allocatedSize < currSize + 1)
-		realocate(allocatedSize + 1);
-	for (int i = currSize; i > index; --i)
+	for (int i = allocatedSize - 1; i > index; --i)
 		data[i] = data[i - 1];
 }
 

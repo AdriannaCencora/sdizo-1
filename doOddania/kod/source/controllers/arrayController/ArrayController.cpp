@@ -18,37 +18,37 @@ void ArrayController::deleteFromStructure()
 	int index = 0;
 	cout << "Podaj indeks: ";
 	cin >> index;
-	structure->removeElement(index);
+
+	try
+	{
+		structure->removeElement(index);
+	}
+	catch(exception &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
 }
 
 void ArrayController::addToStructure()
 {
-	int index = 0, value = 0, parsedInput = -1;
-	string input = "";
+	int index = 0, value = 0;
 
-	cout << "k - dodaj na koñcu" << endl;
-	cout << "i - dodaj w œrodku" << endl;
-	cout << "Twój wybór: ";
-	cin >> input;
+	cout << "Podaj indeks: ";
+	cin >> index;
+	cout << "Podaj wartoœæ: ";
+	cin >> value;
 
-
-	switch (input.c_str()[0])
+	try 
 	{
-		case 'k':
-			cout << "Podaj wartoœæ: ";
-			cin >> value;
-			structure->pushBack(value);
-			break;
-		case 'i':
-			cout << "Podaj indeks: ";
-			cin >> index;
-			cout << "Podaj wartoœæ: ";
-			cin >> value;
-			structure->addElement(index, value);
-			break;
-		default:
-			throw std::invalid_argument("Unknown action input");
+		structure->addElement(index, value);
 	}
+	catch (exception &e)
+	{
+		cout << e.what() << endl;
+		system("pause");
+	}
+
 }
 
 void ArrayController::findInStructure()
@@ -65,8 +65,8 @@ void ArrayController::findInStructure()
 
 void ArrayController::testStructure()
 {
-	structureTestController tester(structure.get(), "Tablica");
+	Array arr;
+	structureTestController tester(&arr, "Tablica");
 
 	tester.runAllTests();
-
 }
