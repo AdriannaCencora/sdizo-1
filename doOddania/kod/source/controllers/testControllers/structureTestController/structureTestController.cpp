@@ -232,7 +232,7 @@ void structureTestController::deleteAtEnd()
 	int totalTime = 0;
 
 	saveToFile("Delete at end");
-
+	bool byValue = (dynamic_cast<Array*>(m_structure) == nullptr);
 	cout << "Test: usuwanie na koñcu" << endl;
 
 	for (int testCase = 1; testCase < 11; ++testCase)
@@ -247,7 +247,10 @@ void structureTestController::deleteAtEnd()
 		{
 			startTime = chrono::high_resolution_clock::now();
 
-			m_structure->removeElement(m_structure->getSize() - 1);
+			if (byValue)
+				m_structure->removeElement(testCase * 1000 - 1 - i);
+			else
+				m_structure->removeElement(m_structure->getSize() - 1);
 
 			endTime = chrono::high_resolution_clock::now();
 
