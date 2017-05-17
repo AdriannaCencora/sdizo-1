@@ -583,7 +583,6 @@ void rbTree::removeNode(Node * toDelete)
 			parentNode->left.reset();
 		else
 			parentNode->right.reset();
-		--size;
 		return;
 	}
 
@@ -634,7 +633,6 @@ void rbTree::removeNode(Node * toDelete)
 			parentNode->right->parent = parentNode;
 
 		}
-		--size;
 
 		if(isChildDoubleBlack)
 			doubleBlackFix(child);

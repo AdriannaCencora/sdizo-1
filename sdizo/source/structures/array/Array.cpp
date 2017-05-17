@@ -41,9 +41,7 @@ void Array::addElement(int index, int value)
 	}
 	else
 	{
-		std::stringstream ss;
-		ss << "Indeks poza zasiêgiem tablicy( podano: " << index << " max: " << getSize();
-		throw std::invalid_argument(ss.str());
+		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
 	}
 	
 	data[index] = value;

@@ -9,7 +9,7 @@ treeTestController::treeTestController(GenericStructure * structure, std::string
 {
 	m_structure = structure;
 	filename = structureName;
-	filename.append(".scv");
+	filename.append(".csv");
 
 	// Clearing the file
 	std::ofstream ofs;
@@ -26,8 +26,6 @@ void treeTestController::insertionTests()
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
 
-	BST* bstTreePtr = nullptr;
-	bstTreePtr = dynamic_cast<BST*>(m_structure);
 	int totalTime = 0;
 
 
@@ -35,7 +33,7 @@ void treeTestController::insertionTests()
 
 	cout << "Test: wstawianie do drzewa" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
@@ -47,11 +45,8 @@ void treeTestController::insertionTests()
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime);
 		totalTime = 0;
-
-		if (bstTreePtr != nullptr)
-			bstTreePtr->fixBalance();
 
 		m_structure->clearStructure();
 	}
@@ -72,7 +67,7 @@ void treeTestController::deletionTests()
 
 	cout << "Test: usuwanie z drzewa" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 
 		cout << "n = " << testCase * 1000 << endl;
@@ -89,7 +84,7 @@ void treeTestController::deletionTests()
 			endTime = chrono::high_resolution_clock::now();
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime);
 		totalTime = 0;
 
 
@@ -105,14 +100,12 @@ void treeTestController::findTests()
 	chrono::high_resolution_clock::time_point endTime;
 
 	int totalTime = 0;
-	BST* bstTreePtr = nullptr;
-	bstTreePtr = dynamic_cast<BST*>(m_structure);
 
-	saveToFile("Find at beginning");
+	saveToFile("Finding");
 
 	cout << "Test: wyszukiwanie w drzewie" << endl;
 
-	for (int testCase = 1; testCase < 6; ++testCase)
+	for (int testCase = 1; testCase < 11; ++testCase)
 	{
 		cout << "n = " << testCase * 1000 << endl;
 
@@ -129,11 +122,9 @@ void treeTestController::findTests()
 			totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
 
 		}
-		saveToFile(testCase, totalTime);
+		saveToFile(testCase * 1000, totalTime);
 		totalTime = 0;
 
-		if (bstTreePtr != nullptr)
-			bstTreePtr->fixBalance();
 		m_structure->clearStructure();
 	}
 	cout << "Zakoñczono test: wyszukiwanie w drzewie" << endl;

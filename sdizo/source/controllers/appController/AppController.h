@@ -20,6 +20,8 @@ class AppController :
 
 		virtual void init();	
 	private:
+		void runAllTests();
+
 		std::unique_ptr<GenericController> controller;
 };
 

@@ -3,6 +3,13 @@
 
 using namespace std;
 
+void genericTestController::setStructure(GenericStructure * structure, std::string structureName)
+{
+	m_structure->clearStructure();
+	m_structure = structure;
+	filename = structureName;
+}
+
 void genericTestController::runAllTests()
 {
 	m_structure->clearStructure();
@@ -17,7 +24,7 @@ void genericTestController::saveToFile(int testSize, int time)
 	if (file.good())
 	{
 		try {
-			file << testSize << "," << time << endl;
+			file << testSize << ";" << time << endl;
 		}
 		catch (...)
 		{

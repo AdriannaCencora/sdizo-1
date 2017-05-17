@@ -23,6 +23,7 @@ void BST::addElement(int value)
 				tmp->left->value = value;
 				tmp->left->parent = tmp;
 				++size;
+				fixBalance();
 				return;
 			}
 			tmp = tmp->left.get();
@@ -35,6 +36,7 @@ void BST::addElement(int value)
 				tmp->right->value = value;
 				tmp->right->parent = tmp;
 				++size;
+				fixBalance();
 				return;
 			}
 			tmp = tmp->right.get();
@@ -49,6 +51,7 @@ void BST::removeElement(int value)
 	{
 		removeNode(toDelete);
 		--size;
+		fixBalance();
 	}
 }
 
@@ -313,12 +316,11 @@ void BST::removeNode(Node * toDelete)
 			parentNode->left.reset();
 		else
 			parentNode->right.reset();
-		--size;
 		return;
 	}
 
 	//One child case
-	if ((toDelete->left == nullptr) != (toDelete->right == nullptr))
+	if ((toDelete->left == nullptr) != (toDelete->right == nullptr) && toDelete->parent != nullptr)
 	{
 		parentNode = toDelete->parent;
 
@@ -339,12 +341,11 @@ void BST::removeNode(Node * toDelete)
 				parentNode->right = move(toDelete->right);
 			parentNode->right->parent = parentNode;
 		}
-		--size;
 		return;
 	}
 
 	//To child case
-	if (toDelete->left != nullptr && toDelete->right != nullptr)
+	if (toDelete->left != nullptr && toDelete->right != nullptr || toDelete->parent == nullptr)
 	{
 		childNode = getSuccessor(toDelete);
 		if (childNode == nullptr)

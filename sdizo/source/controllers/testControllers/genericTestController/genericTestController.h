@@ -9,6 +9,8 @@ public:
 	genericTestController() = default;
 	virtual ~genericTestController() = default;
 
+	void setStructure(GenericStructure* structure, std::string structureName);
+
 	virtual void insertionTests() = 0;
 	virtual void deletionTests() = 0;
 	virtual void findTests() = 0;
