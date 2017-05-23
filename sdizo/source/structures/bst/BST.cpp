@@ -23,7 +23,6 @@ void BST::addElement(int value)
 				tmp->left->value = value;
 				tmp->left->parent = tmp;
 				++size;
-				fixBalance();
 				return;
 			}
 			tmp = tmp->left.get();
@@ -36,7 +35,6 @@ void BST::addElement(int value)
 				tmp->right->value = value;
 				tmp->right->parent = tmp;
 				++size;
-				fixBalance();
 				return;
 			}
 			tmp = tmp->right.get();
@@ -51,7 +49,6 @@ void BST::removeElement(int value)
 	{
 		removeNode(toDelete);
 		--size;
-		fixBalance();
 	}
 }
 

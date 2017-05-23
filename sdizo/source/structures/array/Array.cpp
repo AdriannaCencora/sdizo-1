@@ -32,20 +32,25 @@ void Array::addElement(int index, int value)
 	{
 		data = std::make_unique<int[]>(1);
 		allocatedSize = 1;
+		data[index] = value;
+		++currSize;
 	}
 	else if (index >= 0 && index < currSize)
 	{
 		if (allocatedSize < currSize + 1)
 			this->realocate(allocatedSize + 1);
 		moveElementsRight(index);
+		data[index] = value;
+		++currSize;
 	}
+	else if (index == currSize)
+		pushBack(value);
 	else
 	{
 		throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
 	}
 	
-	data[index] = value;
-	++currSize;
+	
 }
 
 void Array::addElement(int value)
@@ -55,8 +60,8 @@ void Array::addElement(int value)
 
 void Array::pushBack(int value)
 {
-	if (currSize + 1 > allocatedSize)
-		realocate(allocatedSize + 1);
+	if (allocatedSize < currSize + 1)
+		this->realocate(allocatedSize + 1);
 	currSize++;
 	data[currSize - 1] = value;
 }

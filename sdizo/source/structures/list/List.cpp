@@ -78,7 +78,7 @@ void List::addElement(int index, int value)
 		return;
 	}
 
-	if (index == size - 1)
+	if (index == size )
 	{
 		pushBack(value);
 		return;

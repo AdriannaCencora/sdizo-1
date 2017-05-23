@@ -16,6 +16,7 @@ Heap::Heap(int size)
 void Heap::printData()
 {
 	printNode(string(""), string(""), 0);
+	array->printData();
 }
 
 void Heap::addElement(int value)
