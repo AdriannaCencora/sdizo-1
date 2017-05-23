@@ -41,6 +41,9 @@ void Heap::removeElement(int value)
 				break;
 			}
 
+		cout << "Pre delete" << endl;
+		printData();
+
 		array->swap(indexFound, lastElementIndex);
 		array->removeElement(lastElementIndex);
 		fixDown(indexFound);
@@ -88,29 +91,73 @@ void Heap::fixDown(int index)
 {
 	int leftChild;
 	int rightChild;
-	bool isLeft, isRight;
-	isLeft = isRight = true;
-	while (isLeft || isRight)
+	int parent;
+	bool isLeft, isRight, shifted;
+	isLeft = isRight = shifted = true;
+
+	cout << "pre fix" << endl;
+	printData();
+
+	while ((isLeft || isRight) && shifted)
 	{
 		isLeft = isRight = true;
+		shifted = false;
 		leftChild = index * 2 + 1;
 		rightChild = index * 2 + 2;
-		
-		if (leftChild >= array->getSize() || array->getValue(index) > array->getValue(leftChild))
-			isLeft = false;
-		else
-		{
-			array->swap(index, leftChild);
-			index = leftChild;	
-		}
 
-		if (rightChild >= array->getSize() || array->getValue(index) > array->getValue(rightChild))
-			isRight = false;
-		else
+		isLeft = (leftChild < array->getSize());
+		isRight = (rightChild < array->getSize());
+		parent = (int)(index - 1) / 2;
+
+		if (parent >= 0)
+			if (array->getValue(parent) < array->getValue(index))
+			{
+				fixDown(parent);
+				return;
+			}
+
+		if (isRight && isLeft)
 		{
-			array->swap(index, rightChild);
-			index = rightChild;
+			if (array->getValue(rightChild) > array->getValue(leftChild))
+			{
+				if (array->getValue(rightChild) > array->getValue(index))
+				{
+					array->swap(index, rightChild);
+					index = rightChild;
+					shifted = true;
+				}
+			}
+			else
+			{
+				if (array->getValue(leftChild) > array->getValue(index))
+				{
+					array->swap(index, leftChild);
+					index = leftChild;
+					shifted = true;
+				}
+			}
 		}
+		else if (isRight)
+		{
+			if (array->getValue(rightChild) > array->getValue(index))
+			{
+				array->swap(index, rightChild);
+				index = rightChild;
+				shifted = true;
+			}
+		}
+		else if (isLeft)
+		{
+			if (array->getValue(leftChild) > array->getValue(index))
+			{
+				array->swap(index, leftChild);
+				index = leftChild;
+				shifted = true;
+			}
+		}
+		cout << "fixing for index : " << index << endl;
+		printData();
+		system("pause");
 	}
 }
 
