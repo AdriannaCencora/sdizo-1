@@ -1,1 +1,46 @@
-﻿
+﻿  stdafx.cpp
+  genericTestController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\testcontrollers\generictestcontroller\generictestcontroller.h(3): fatal error C1083: Cannot open include file: 'source\structures\genericStructure\GenericStructure.h': No such file or directory
+  rbTree.cpp
+d:\source\repos\sdizo\sdizo\source\structures\genericstructure\genericstructure.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  rbTreeController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  rbTreeMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  AppController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  appMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Array.cpp
+d:\source\repos\sdizo\sdizo\source\structures\genericstructure\genericstructure.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  ArrayController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  ArrayMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  BSTController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\bstcontroller\bstcontroller.cpp(2): fatal error C1083: Cannot open include file: 'source\controllers\bstController\BSTController.h': No such file or directory
+  BSTMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  BST.cpp
+d:\source\repos\sdizo\sdizo\source\structures\genericstructure\genericstructure.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  GenericController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Heap.cpp
+d:\source\repos\sdizo\sdizo\source\structures\genericstructure\genericstructure.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  HeapController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  heapMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  List.cpp
+d:\source\repos\sdizo\sdizo\source\structures\genericstructure\genericstructure.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  ListController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  listMenu.cpp
+d:\source\repos\sdizo\sdizo\source\views\genericview\genericview.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  sdizo.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\genericcontroller\genericcontroller.h(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Compiling...
+  structureTestController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\testcontrollers\structuretestcontroller\structuretestcontroller.h(2): fatal error C1083: Cannot open include file: 'source\controllers\testControllers\genericTestController\genericTestController.h': No such file or directory
+  treeTestController.cpp
+d:\source\repos\sdizo\sdizo\source\controllers\testcontrollers\treetestcontroller\treetestcontroller.cpp(2): fatal error C1083: Cannot open include file: 'source\controllers\testControllers\treeTestController\treeTestController.h': No such file or directory

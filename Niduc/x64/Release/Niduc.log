@@ -1,9 +1,0 @@
-﻿  App.cpp
-  Niduc.cpp
-  Generating code
-  4 of 295 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    33 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  Niduc.vcxproj -> C:\Users\krzem\Documents\Repa\sdizo\Niduc\x64\Release\Niduc.exe
-  Niduc.vcxproj -> C:\Users\krzem\Documents\Repa\sdizo\Niduc\x64\Release\Niduc.pdb (Full PDB)
